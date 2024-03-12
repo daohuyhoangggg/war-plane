@@ -15,15 +15,21 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="maincpp.cpp">
+    <ClCompile Include="thuvien.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="thuvien.cpp">
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="figure.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="thuvien.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="figure.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
