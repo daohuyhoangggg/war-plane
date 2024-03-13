@@ -9,6 +9,8 @@
 #define WIDTH_MAIN_OBJECT 80
 #define HEIGHT_MAIN_OBJECT 45
 
+const int  acceleration = 1;
+const int  SPEEDFLY = 3;
 
 class MainObject : public BaseObject
 {
@@ -22,5 +24,6 @@ public:
 private:
 	int x_val_;
 	int y_val_;
+	int velocity_y;
 };
 #endif
