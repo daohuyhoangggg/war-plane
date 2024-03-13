@@ -24,10 +24,7 @@ int  main(int arc, char* argv[])
 		return false;
 	}
 	
-	// Create ThreatObject
-	ThreatObject* p_threats = new ThreatObject[THREATS];
-	for(int t = 0; t < THREATS; t++)
-	{}
+	
 	bool is_quit = false;
 	bool is_mouseButton = false;
 	while(!is_quit)			// cap nhap man hình
