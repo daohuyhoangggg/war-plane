@@ -21,9 +21,29 @@ int  main(int arc, char* argv[])
 	if(ret == NULL) 
 	{
 		 printf( "Unable to load image %s! SDL Error: %s\n", "img/plane_fly.png", SDL_GetError() );
-		return false;
+		return 0;
 	}
 	
+	// Create ThreatObject
+	ThreatObject* p_threats = new ThreatObject[THREATS];
+	for(int t = 0; t < THREATS; t++)
+	{
+		ThreatObject* p_threat = (p_threats + t);
+		if(p_threat)
+		{
+			ret = p_threat->LoadImg("img/af1.png");
+			if(ret == NULL)
+			{
+				printf( "Unable to load image %s! SDL Error: %s\n", "img/af1.png", SDL_GetError() );
+				return 0;
+			}
+			p_threat->SetRect(SCREEN_WIDTH + t*400, 400);
+			p_threat->set_x_val(5);
+
+		}
+	
+	}
+
 	
 	bool is_quit = false;
 	bool is_mouseButton = false;
@@ -53,11 +73,22 @@ int  main(int arc, char* argv[])
 		}	
 		
 		SDLCommonFunc::ApplySurface(gBkground, gScreen, 0, 0);
-		plane_object.Show(gScreen); // tải ảnh nhân vật
 
 		// Make MainObject
 		plane_object.HandleMove();
 		plane_object.Show(gScreen);
+
+		// Make ThreatObject
+		for(int tt = 0; tt < THREATS; tt++)
+		{
+			ThreatObject* p_threat = (p_threats + tt);
+			if(p_threat)
+			{
+				p_threat->HandleMove(SCREEN_WIDTH, SCREEN_HEIGHT);
+				p_threat->Show(gScreen);
+					
+			}
+		}
 
 		// Update screen
 		if(SDL_Flip(gScreen) == -1)return -1;			// hiển thị

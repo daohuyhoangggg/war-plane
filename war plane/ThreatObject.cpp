@@ -19,5 +19,7 @@ ThreatObject::~ThreatObject()
 
 void ThreatObject::HandleMove(const int & x_border, const int& y_border)
 {
+	rect_.x -= x_val_;
+	if(rect_.x < 0)rect_.x = SCREEN_WIDTH;
 
 }
