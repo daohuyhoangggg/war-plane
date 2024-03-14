@@ -37,7 +37,14 @@ int  main(int arc, char* argv[])
 				printf( "Unable to load image %s! SDL Error: %s\n", "img/af1.png", SDL_GetError() );
 				return 0;
 			}
-			p_threat->SetRect(SCREEN_WIDTH + t*400, 400);
+
+			int rand_y = rand()% 600 + 1;
+			if(rand_y > SCREEN_HEIGHT - 250)
+			{
+				rand_y = SCREEN_HEIGHT * 0.3;
+			}
+
+			p_threat->SetRect(SCREEN_WIDTH + t*400, rand_y);		// lam cho cac threat xuat hien khac thoi diem
 			p_threat->set_x_val(5);
 
 		}
