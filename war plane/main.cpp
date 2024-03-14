@@ -59,7 +59,8 @@ int  main(int arc, char* argv[])
 					else if (gEven.type == SDL_MOUSEBUTTONDOWN) {
 						if (gEven.button.button == SDL_BUTTON_LEFT) {
 							is_mouseButton = true;	
-							plane_object.Flap();			// Đặt biến trạng thái là true khi chuột được nhấn
+							plane_object.Flap();
+							plane_object.CreateAmo();		// Đặt biến trạng thái là true khi chuột được nhấn
 					}
 				}		
 				else if (gEven.type == SDL_MOUSEBUTTONUP) {
@@ -77,6 +78,7 @@ int  main(int arc, char* argv[])
 		// Make MainObject
 		plane_object.HandleMove();
 		plane_object.Show(gScreen);
+		plane_object.MakeAmo(gScreen); // xử lý đạn cho đối tượng chính
 
 		// Make ThreatObject
 		for(int tt = 0; tt < THREATS; tt++)

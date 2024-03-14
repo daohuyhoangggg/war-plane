@@ -5,7 +5,7 @@
 #include<SDL.h>
 #include<string>
 #include<SDL_image.h>
-
+#include<vector>
 
 
 const int SCREEN_WIDTH = 1200;
