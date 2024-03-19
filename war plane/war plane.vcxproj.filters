@@ -30,7 +30,7 @@
     <ClCompile Include="ThreatObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="AmoObject.cpp">
+    <ClCompile Include="BulletObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -47,7 +47,7 @@
     <ClInclude Include="ThreatObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="AmoObject.h">
+    <ClInclude Include="BulletObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

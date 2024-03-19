@@ -33,3 +33,45 @@ void ThreatObject::HandleMove(const int & x_border, const int& y_border)
 	}
 
 }
+
+void ThreatObject::InitBullet(BulletObject* p_bullet)
+{
+	if(p_bullet != NULL)
+	{
+		bool ret = p_bullet->LoadImg("img/bullet_threat.png");
+
+		if(ret)
+		{
+			p_bullet->set_is_move(true);
+			p_bullet->SetWidthHeight(WIDTH_BULLET, WIDTH_BULLET);
+			p_bullet->set_type(BulletObject::BULLET_THREAT);
+			p_bullet->SetRect(rect_.x, rect_.y + rect_.h * 0.5 );
+			p_bullet->set_x_val(8);
+			p_bullet_list.push_back(p_bullet);
+		}
+
+	}
+
+}
+
+void ThreatObject::MakeBullet(SDL_Surface* des, const int& x_limit, const int& y_limit)
+{
+	for(int i = 0; i < p_bullet_list.size(); i++)
+	{
+		BulletObject* p_bullet = p_bullet_list.at(i);
+		if(p_bullet)
+		{
+			if(p_bullet->get_is_move())
+			{
+				p_bullet->HandleMoveRightToLeft();
+				p_bullet->Show(des);
+			}
+			else{
+				// xet lai vi tri ban dau cho dan
+				p_bullet->set_is_move(true);
+				p_bullet->SetRect(rect_.x, rect_.y + rect_.h * 0.5);
+			}
+		}
+	}
+
+}

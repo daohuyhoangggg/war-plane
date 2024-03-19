@@ -11,7 +11,7 @@
 const int SCREEN_WIDTH = 1200;
 const int SCREEN_HEIGHT = 675;
 const int SCREEN_BPP = 32;
-
+const int SCREEN_SPEED = 2;
 
 static SDL_Surface* gScreen = NULL;
 static SDL_Surface* gBkground = NULL;

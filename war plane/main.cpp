@@ -16,11 +16,11 @@ int  main(int arc, char* argv[])
 
 	// Create MainObject
 	MainObject plane_object;
-	bool ret = plane_object.LoadImg("img/plane_fly.png");		// load ảnh nhân vật
+	bool ret = plane_object.LoadImg("img/plane_object.png");		// load ảnh nhân vật
 	plane_object.SetRect(100,100);
 	if(ret == NULL) 
 	{
-		 printf( "Unable to load image %s! SDL Error: %s\n", "img/plane_fly.png", SDL_GetError() );
+		 printf( "Unable to load image %s! SDL Error: %s\n", "img/plane_object.png", SDL_GetError() );
 		return 0;
 	}
 	
@@ -31,10 +31,10 @@ int  main(int arc, char* argv[])
 		ThreatObject* p_threat = (p_threats + t);
 		if(p_threat)
 		{
-			ret = p_threat->LoadImg("img/af1.png");
+			ret = p_threat->LoadImg("img/threat.png");
 			if(ret == NULL)
 			{
-				printf( "Unable to load image %s! SDL Error: %s\n", "img/af1.png", SDL_GetError() );
+				printf( "Unable to load image %s! SDL Error: %s\n", "img/threat.png", SDL_GetError() );
 				return 0;
 			}
 
@@ -47,6 +47,10 @@ int  main(int arc, char* argv[])
 			p_threat->SetRect(SCREEN_WIDTH + t*400, rand_y);		// lam cho cac threat xuat hien khac thoi diem
 			p_threat->set_x_val(5);
 
+			// nap dan cho doi tuong threat
+			BulletObject* p_bullet = new BulletObject();
+			p_threat->InitBullet(p_bullet);
+
 		}
 	
 	}
@@ -54,6 +58,9 @@ int  main(int arc, char* argv[])
 	
 	bool is_quit = false;
 	bool is_mouseButton = false;
+	bool is_play = false;
+	int speed_screen = 0;
+
 	while(!is_quit)			// cap nhap man hình
 	{
 			
@@ -66,8 +73,9 @@ int  main(int arc, char* argv[])
 					else if (gEven.type == SDL_MOUSEBUTTONDOWN) {
 						if (gEven.button.button == SDL_BUTTON_LEFT) {
 							is_mouseButton = true;	
+							is_play = true;
 							plane_object.Flap();
-							plane_object.CreateAmo();		// Đặt biến trạng thái là true khi chuột được nhấn
+							plane_object.CreateBullet();		// Đặt biến trạng thái là true khi chuột được nhấn
 					}
 				}		
 				else if (gEven.type == SDL_MOUSEBUTTONUP) {
@@ -80,12 +88,20 @@ int  main(int arc, char* argv[])
 			plane_object.Flap();
 		}	
 		
-		SDLCommonFunc::ApplySurface(gBkground, gScreen, 0, 0);
+
+		// apply background && xử lý di chuyển màn hình
+		speed_screen -= SCREEN_SPEED;
+		SDLCommonFunc::ApplySurface(gBkground, gScreen, speed_screen, 0);
+		SDLCommonFunc::ApplySurface(gBkground, gScreen, speed_screen + SCREEN_WIDTH, 0);
+		if (speed_screen <= -SCREEN_WIDTH) speed_screen = 0;
 
 		// Make MainObject
-		plane_object.HandleMove();
+		if(is_play)
+		{
+			plane_object.HandleMove();
+		}
 		plane_object.Show(gScreen);
-		plane_object.MakeAmo(gScreen); // xử lý đạn cho đối tượng chính
+		plane_object.MakeBullet(gScreen); // xử lý đạn cho đối tượng chính
 
 		// Make ThreatObject
 		for(int tt = 0; tt < THREATS; tt++)
@@ -95,6 +111,7 @@ int  main(int arc, char* argv[])
 			{
 				p_threat->HandleMove(SCREEN_WIDTH, SCREEN_HEIGHT);
 				p_threat->Show(gScreen);
+				p_threat->MakeBullet(gScreen, SCREEN_WIDTH, SCREEN_HEIGHT);
 					
 			}
 		}

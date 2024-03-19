@@ -16,7 +16,7 @@ SDL_Surface* SDLCommonFunc::LoadImage(std::string file_path)
 		if(optimizeImage != NULL)
 		{
 				// loại bỏ background của cái đối tượng con
-				UINT32 color_key = SDL_MapRGB(optimizeImage->format, 0, 0xFF, 0xFF);		
+				UINT32 color_key = SDL_MapRGB(optimizeImage->format, 255, 255, 255);		
 				SDL_SetColorKey(optimizeImage, SDL_SRCCOLORKEY, color_key);
 
 		}

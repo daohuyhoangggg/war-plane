@@ -3,7 +3,7 @@
 #define MAIN_OBJECT_H_
 
 #include "BaseObject.h"
-#include "AmoObject.h"
+#include "BulletObject.h"
 #include "thuvien.h"
 
 
@@ -22,16 +22,16 @@ public:
 	void Flap();			
 	void HandleMove();		// Xu ly di chuyen
 
-	void CreateAmo();
-	void MakeAmo(SDL_Surface* des);
+	void CreateBullet();
+	void MakeBullet(SDL_Surface* des);
 
-	void SetAmoList(std::vector<AmoObject*> amo_list) {p_amo_list = amo_list;}			
-	std::vector<AmoObject*> GetAmoList() const {return p_amo_list;}
+	void SetBulletList(std::vector<BulletObject*> bullet_list) {p_bullet_list = bullet_list;}			
+	std::vector<BulletObject*> GetBulletList() const {return p_bullet_list;}
 
 private:
 	int x_val_;
 	int y_val_;
 	int velocity_y;
-	std::vector<AmoObject*> p_amo_list;
+	std::vector<BulletObject*> p_bullet_list;
 };
 #endif

@@ -22,41 +22,41 @@ void MainObject::Flap()
 {
 	velocity_y = -SPEEDFLY;
 }
-void MainObject::CreateAmo()
+void MainObject::CreateBullet()
 {
-	AmoObject* p_amo = new AmoObject();
-	p_amo->SetWidthHeight(WIDTH_BULLET, WIDTH_BULLET);
-	p_amo->LoadImg("img/laser.png");
-	p_amo->set_type(AmoObject::LAZER);
+	BulletObject* p_bullet = new BulletObject();
+	p_bullet->SetWidthHeight(WIDTH_BULLET, WIDTH_BULLET);
+	p_bullet->LoadImg("img/bullet_main.png");
+	p_bullet->set_type(BulletObject::BULLET_MAIN);
 
-	p_amo->SetRect(this->rect_.x + this->rect_.w - 30 , this->rect_.y + this->rect_.h * 0.8);
-	p_amo->set_is_move(true);
-	p_amo->set_x_val(8);
+	p_bullet->SetRect(this->rect_.x + this->rect_.w - 30 , this->rect_.y + this->rect_.h * 0.8);
+	p_bullet->set_is_move(true);
+	p_bullet->set_x_val(8);
 
-	p_amo_list.push_back(p_amo);
+	p_bullet_list.push_back(p_bullet);
 	
 }
 
-void MainObject::MakeAmo(SDL_Surface* des)
+void MainObject::MakeBullet(SDL_Surface* des)
 {
-	for(int i = 0; i < p_amo_list.size(); i++)
+	for(int i = 0; i < p_bullet_list.size(); i++)
 		{
 			
-			AmoObject* p_amo = p_amo_list.at(i);
-			if(p_amo != NULL)
+			BulletObject* p_bullet = p_bullet_list.at(i);
+			if(p_bullet != NULL)
 			{
-				if(p_amo->get_is_move())
+				if(p_bullet->get_is_move())
 				{
-					p_amo->HandleMove(SCREEN_WIDTH , SCREEN_HEIGHT);
-					p_amo->Show(des);
+					p_bullet->HandleMove(SCREEN_WIDTH , SCREEN_HEIGHT);
+					p_bullet->Show(des);
 				}
 				else 
 				{
-					if(p_amo != NULL)
+					if(p_bullet != NULL)
 					{
-						p_amo_list.erase(p_amo_list.begin() + i);
-						delete p_amo;
-						p_amo = NULL;
+						p_bullet_list.erase(p_bullet_list.begin() + i);
+						delete p_bullet;
+						p_bullet = NULL;
 					}
 				}
 			}

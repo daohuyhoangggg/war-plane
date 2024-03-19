@@ -79,7 +79,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="AmoObject.cpp" />
+    <ClCompile Include="BulletObject.cpp" />
     <ClCompile Include="BaseObject.cpp" />
     <ClCompile Include="MainObject.cpp" />
     <ClCompile Include="main.cpp" />
@@ -87,7 +87,7 @@
     <ClCompile Include="thuvien.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AmoObject.h" />
+    <ClInclude Include="BulletObject.h" />
     <ClInclude Include="BaseObject.h" />
     <ClInclude Include="MainObject.h" />
     <ClInclude Include="ThreatObject.h" />
