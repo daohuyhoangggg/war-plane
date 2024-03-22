@@ -111,8 +111,26 @@ int  main(int arc, char* argv[])
 			{
 				p_threat->HandleMove(SCREEN_WIDTH, SCREEN_HEIGHT);
 				p_threat->Show(gScreen);
-				p_threat->MakeBullet(gScreen, SCREEN_WIDTH, SCREEN_HEIGHT);
-					
+				if(p_threat->GetRect().x > plane_object.GetRect().x)
+				{
+					p_threat->MakeBullet(gScreen, SCREEN_WIDTH, SCREEN_HEIGHT);
+
+					// xử lý va chạm giữa main và bullet_threat 
+					std::vector<BulletObject*>bulletT_list = p_threat->GetBulletList();
+					for(int  bt = 0; bt < bulletT_list.size(); bt++)
+					{
+						bool is_col = SDLCommonFunc::CheckCollision(plane_object.GetRect(), bulletT_list.at(bt)->GetRect());
+						if(is_col){
+
+							if(MessageBox(NULL, L"GAME OVER!", L"Info", MB_OK) == IDOK)
+							{
+								SDLCommonFunc::CleanUp();
+								SDL_Quit();
+								return -1;
+							}
+						}
+					} 			
+				}
 			}
 		}
 
