@@ -115,12 +115,14 @@ int  main(int arc, char* argv[])
 				{
 					p_threat->MakeBullet(gScreen, SCREEN_WIDTH, SCREEN_HEIGHT);
 
+
 					// xử lý va chạm giữa main và bullet_threat 
 					std::vector<BulletObject*>bulletT_list = p_threat->GetBulletList();
 					for(int  bt = 0; bt < bulletT_list.size(); bt++)
 					{
 						bool is_col = SDLCommonFunc::CheckCollision(plane_object.GetRect(), bulletT_list.at(bt)->GetRect());
-						if(is_col){
+						if(is_col)
+						{
 
 							if(MessageBox(NULL, L"GAME OVER!", L"Info", MB_OK) == IDOK)
 							{
@@ -129,7 +131,39 @@ int  main(int arc, char* argv[])
 								return -1;
 							}
 						}
-					} 			
+					} 
+
+
+
+					// xử lý va chạm giữa main và threat
+					bool is_col1 = SDLCommonFunc::CheckCollision(plane_object.GetRect(), p_threat->GetRect());
+					if(is_col1)
+					{
+
+						if(MessageBox(NULL, L"GAME OVER!", L"Info", MB_OK) == IDOK)
+						{
+							SDLCommonFunc::CleanUp();
+							SDL_Quit();
+							return -1;
+						}
+					}
+
+
+
+					// xử lý va chạm giữa đạn của main object với threat object
+					std::vector<BulletObject*> bulletM_list = plane_object.GetBulletList();
+					for(int bm = 0; bm < bulletM_list.size(); bm++)
+					{
+						bool is_col2 = SDLCommonFunc::CheckCollision(bulletM_list.at(bm)->GetRect(), p_threat->GetRect());
+						if(is_col2)
+						{
+							
+							bulletM_list.at(bm)->set_is_move(false);
+							p_threat->Reset(SCREEN_WIDTH);	
+
+						}
+
+					}
 				}
 			}
 		}
