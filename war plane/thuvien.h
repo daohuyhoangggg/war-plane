@@ -21,6 +21,7 @@ namespace SDLCommonFunc
 {
 	SDL_Surface* LoadImage(std::string file_path);				// tải ảnh 
 	void ApplySurface(SDL_Surface* src, SDL_Surface* des, int x, int y);    // vẽ ảnh src lên des(màn hinh) tại tọa độ(x,y)
+	void ApplySurfaceClip(SDL_Surface* src, SDL_Surface* des, SDL_Rect* clip, int x ,int y);
 	bool CheckCollision(const SDL_Rect& object1, const SDL_Rect& object2);		// xử lý va chạm
 	void CleanUp();					// Giải phóng tài nguyên
 }

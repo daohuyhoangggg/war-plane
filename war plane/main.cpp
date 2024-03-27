@@ -2,7 +2,7 @@
 #include "BaseObject.h"
 #include "MainObject.h"
 #include "ThreatObject.h"
-
+#include "ExplosionObject.h"
 
 bool init();  // Thiet lap cua so man hinh
 
@@ -24,6 +24,17 @@ int  main(int arc, char* argv[])
 		return 0;
 	}
 	
+
+	//Create ExplosionObject
+	ExplosionObject exp;		
+	ret = exp.LoadImg("img/exp.png");
+	if(ret == NULL) 
+	{
+		printf( "Unable to load image %s! SDL Error: %s\n", "img/plane_object.png", SDL_GetError() );
+		return 0;
+	}
+	exp.set_clip();
+
 	// Create ThreatObject
 	ThreatObject* p_threats = new ThreatObject[THREATS];
 	for(int t = 0; t < THREATS; t++)
@@ -103,6 +114,8 @@ int  main(int arc, char* argv[])
 		plane_object.Show(gScreen);
 		plane_object.MakeBullet(gScreen); // xử lý đạn cho đối tượng chính
 
+
+
 		// Make ThreatObject
 		for(int tt = 0; tt < THREATS; tt++)
 		{
@@ -113,7 +126,7 @@ int  main(int arc, char* argv[])
 				p_threat->Show(gScreen);
 				if(p_threat->GetRect().x > plane_object.GetRect().x)
 				{
-					p_threat->MakeBullet(gScreen, SCREEN_WIDTH, SCREEN_HEIGHT);
+					//p_threat->MakeBullet(gScreen, SCREEN_WIDTH, SCREEN_HEIGHT);
 
 
 					// xử lý va chạm giữa main và bullet_threat 
@@ -123,6 +136,22 @@ int  main(int arc, char* argv[])
 						bool is_col = SDLCommonFunc::CheckCollision(plane_object.GetRect(), bulletT_list.at(bt)->GetRect());
 						if(is_col)
 						{
+
+							// thực hiện vụ nổ cho main object 
+							for(int ex_m = 0; ex_m < 4; ex_m++)
+							{
+								int x = (plane_object.GetRect().x + plane_object.GetRect().w * 0.5) - EXPLOSION_WIDTH * 0.5;
+								int y = (plane_object.GetRect().y + plane_object.GetRect().h * 0.5) - EXPLOSION_HEIGHT * 0.5;
+
+								exp.set_frame(ex_m);
+								exp.SetRect(x, y);
+								exp.ShowEx(gScreen);
+
+
+								if(SDL_Flip(gScreen) == -1)return -1;
+
+
+							}
 
 							if(MessageBox(NULL, L"GAME OVER!", L"Info", MB_OK) == IDOK)
 							{
@@ -139,6 +168,44 @@ int  main(int arc, char* argv[])
 					bool is_col1 = SDLCommonFunc::CheckCollision(plane_object.GetRect(), p_threat->GetRect());
 					if(is_col1)
 					{
+
+						// thực hiện vụ nổ cho main object 
+						for(int ex_m = 0; ex_m < 4; ex_m++)
+						{
+							int x = (plane_object.GetRect().x + plane_object.GetRect().w * 0.5) - EXPLOSION_WIDTH * 0.5;
+							int y = (plane_object.GetRect().y + plane_object.GetRect().h * 0.5) - EXPLOSION_HEIGHT * 0.5;
+
+							exp.set_frame(ex_m);
+							exp.SetRect(x, y);
+							exp.ShowEx(gScreen);
+							
+
+							if(SDL_Flip(gScreen) == -1)return -1;
+
+
+						}
+
+
+
+						// thực hiện vụ nổ cho threat object 
+						for(int ex_t = 0; ex_t < 4; ex_t++)
+						{
+							int x = (p_threat->GetRect().x + p_threat->GetRect().w * 0.5) - EXPLOSION_WIDTH * 0.5;
+							int y = (p_threat->GetRect().y + p_threat->GetRect().h * 0.5) - EXPLOSION_HEIGHT * 0.5;
+
+							exp.set_frame(ex_t);
+							exp.SetRect(x, y);
+							exp.ShowEx(gScreen);
+
+							if(SDL_Flip(gScreen) == -1)
+							{
+								delete [] p_threats;
+								SDLCommonFunc::CleanUp();
+								SDL_Quit();
+								return -1;
+							}
+						}
+
 
 						if(MessageBox(NULL, L"GAME OVER!", L"Info", MB_OK) == IDOK)
 						{
@@ -157,6 +224,17 @@ int  main(int arc, char* argv[])
 						bool is_col2 = SDLCommonFunc::CheckCollision(bulletM_list.at(bm)->GetRect(), p_threat->GetRect());
 						if(is_col2)
 						{
+
+							for(int ex_t = 0; ex_t < 4; ex_t++)
+							{
+								int x = (p_threat->GetRect().x + p_threat->GetRect().w * 0.5) - EXPLOSION_WIDTH * 0.5;
+								int y = (p_threat->GetRect().y + p_threat->GetRect().h * 0.5) - EXPLOSION_HEIGHT * 0.5;
+
+								exp.set_frame(ex_t);
+								exp.SetRect(x, y);
+								exp.ShowEx(gScreen);
+								if(SDL_Flip(gScreen) == -1)return -1;
+							}
 							
 							bulletM_list.at(bm)->set_is_move(false);
 							p_threat->Reset(SCREEN_WIDTH);	
