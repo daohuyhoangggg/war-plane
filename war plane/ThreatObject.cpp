@@ -38,7 +38,7 @@ void ThreatObject::InitBullet(BulletObject* p_bullet)
 {
 	if(p_bullet != NULL)
 	{
-		bool ret = p_bullet->LoadImg("img/bullet_threat.png");
+		bool ret = p_bullet->LoadImg(g_name_bullet_threat_obj);
 
 		if(ret)
 		{

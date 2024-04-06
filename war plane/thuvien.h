@@ -41,6 +41,18 @@ const int NUMBER_OF_FRAMES		= 4;
 
 
 
+static char g_name_back_ground[]		= {"img/background_game.jpg"};
+
+
+static char g_name_main_obj[]			= {"img/plane_object.png"};
+static char g_name_bullet_main_obj[]	= {"img/bullet_main.png"};
+
+static char g_name_threat_obj[]			= {"img/threat.png"};
+static char g_name_bullet_threat_obj[]	= {"img/bullet_threat.png"};
+
+static char g_name_exp_obj[]				= {"img/exp_main.png"};
+
+
 namespace SDLCommonFunc
 {
 	SDL_Surface* LoadImage(std::string file_path);				// tải ảnh 

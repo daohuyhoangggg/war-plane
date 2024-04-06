@@ -26,7 +26,7 @@ void MainObject::CreateBullet()
 {
 	BulletObject* p_bullet = new BulletObject();
 	p_bullet->SetWidthHeight(WIDTH_BULLET, WIDTH_BULLET);
-	p_bullet->LoadImg("img/bullet_main.png");
+	p_bullet->LoadImg(g_name_bullet_main_obj);
 	p_bullet->set_type(BulletObject::BULLET_MAIN);
 
 	p_bullet->SetRect(this->rect_.x + this->rect_.w - 30 , this->rect_.y + this->rect_.h * 0.8);

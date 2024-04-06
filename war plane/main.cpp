@@ -11,26 +11,26 @@ int  main(int arc, char* argv[])
 
 	if(!init())return -1;
 
-	gBkground = SDLCommonFunc::LoadImage("img/background_game.jpg");
+	gBkground = SDLCommonFunc::LoadImage(g_name_back_ground);
 	if(gBkground == NULL)return -1;
 
 	// Create MainObject
 	MainObject plane_object;
-	bool ret = plane_object.LoadImg("img/plane_object.png");		// load ảnh nhân vật
+	bool ret = plane_object.LoadImg(g_name_main_obj);		// load ảnh nhân vật
 	plane_object.SetRect(X_STAR_MAIN, Y_STAR_MAIN);
 	if(ret == NULL) 
 	{
-		 printf( "Unable to load image %s! SDL Error: %s\n", "img/plane_object.png", SDL_GetError() );
+		 printf( "Unable to load image %s! SDL Error: %s\n", g_name_main_obj, SDL_GetError() );
 		return 0;
 	}
 	
 
 	//Create ExplosionObject
 	ExplosionObject exp;		
-	ret = exp.LoadImg("img/exp.png");
+	ret = exp.LoadImg(g_name_exp_obj);
 	if(ret == NULL) 
 	{
-		printf( "Unable to load image %s! SDL Error: %s\n", "img/plane_object.png", SDL_GetError() );
+		printf( "Unable to load image %s! SDL Error: %s\n", g_name_exp_obj, SDL_GetError() );
 		return 0;
 	}
 	exp.set_clip();
@@ -42,10 +42,10 @@ int  main(int arc, char* argv[])
 		ThreatObject* p_threat = (p_threats + t);
 		if(p_threat)
 		{
-			ret = p_threat->LoadImg("img/threat.png");
+			ret = p_threat->LoadImg(g_name_threat_obj);
 			if(ret == NULL)
 			{
-				printf( "Unable to load image %s! SDL Error: %s\n", "img/threat.png", SDL_GetError() );
+				printf( "Unable to load image %s! SDL Error: %s\n", g_name_threat_obj, SDL_GetError() );
 				return 0;
 			}
 
