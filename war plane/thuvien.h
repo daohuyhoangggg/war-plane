@@ -40,6 +40,14 @@ const int EXPLOSION_HEIGHT		= 165;
 const int NUMBER_OF_FRAMES		= 4;	
 
 
+// SKILL OBJECT
+const int  WIDTH_SKILL =   50;
+const int  HEIGHT_SKILL =  49;
+const int SKILLS  = 3;
+const int MAX_HEIGHT_OF_SKILL = 600;
+const int UNDER_LIMIT_SKILL	= 200;
+
+
 
 static char g_name_back_ground[]		= {"img/background_game.jpg"};
 
@@ -50,7 +58,9 @@ static char g_name_bullet_main_obj[]	= {"img/bullet_main.png"};
 static char g_name_threat_obj[]			= {"img/threat.png"};
 static char g_name_bullet_threat_obj[]	= {"img/bullet_threat.png"};
 
-static char g_name_exp_obj[]				= {"img/exp_main.png"};
+static char g_name_exp_obj[]			= {"img/exp.png"};
+
+static char g_name_skill_obj[]			= {"img/sao.png"};
 
 
 namespace SDLCommonFunc

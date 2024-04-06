@@ -3,6 +3,7 @@
 #include "MainObject.h"
 #include "ThreatObject.h"
 #include "ExplosionObject.h"
+#include "SkillObject.h"
 
 bool init();  // Thiet lap cua so man hinh
 
@@ -66,6 +67,24 @@ int  main(int arc, char* argv[])
 	
 	}
 
+
+	// Create skill
+	SkillObject* p_skills = new SkillObject[SKILLS];
+	for(int s = 0; s < SKILLS; s++)
+	{
+		SkillObject* p_skill = (p_skills + s);
+		if(p_skill)
+		{
+			int rand_y = rand()% MAX_HEIGHT_OF_THREAT + 20;
+			if(rand_y > SCREEN_HEIGHT - UNDER_LIMIT_THREAT)
+			{
+				rand_y = SCREEN_HEIGHT * 0.3;
+			} 
+			p_skill->InitSkill(p_skill);
+			p_skill->SetRect(SCREEN_WIDTH + s*400, rand_y);
+		}
+	}
+
 	
 	bool is_quit = false;
 	bool is_mouseButton = false;
@@ -114,6 +133,31 @@ int  main(int arc, char* argv[])
 		plane_object.Show(gScreen);
 		plane_object.MakeBullet(gScreen); // xử lý đạn cho đối tượng chính
 
+
+
+		//Make Skill object
+		for(int ss = 0; ss < SKILLS; ss++)
+		{
+			SkillObject* p_skill = (p_skills + ss);
+			if(p_skill)
+			{
+				p_skill->MakeSkill(gScreen, SCREEN_WIDTH, SCREEN_HEIGHT);
+				p_skill->HandleMove(SCREEN_WIDTH, SCREEN_HEIGHT);
+
+
+				//Main object khi ăn được skill
+				bool is_col3 = SDLCommonFunc::CheckCollision(plane_object.GetRect(), p_skill->GetRect());
+				if(is_col3)
+				{
+					if(p_skill->get_type() == 0)
+					{
+						p_skill->Reset(SCREEN_WIDTH);
+					}
+					
+				}
+
+			}
+		}
 
 
 		// Make ThreatObject
