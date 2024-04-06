@@ -31,7 +31,7 @@ void MainObject::CreateBullet()
 
 	p_bullet->SetRect(this->rect_.x + this->rect_.w - 30 , this->rect_.y + this->rect_.h * 0.8);
 	p_bullet->set_is_move(true);
-	p_bullet->set_x_val(8);
+	p_bullet->set_x_val(SPEED_BULLET_MAIN);
 
 	p_bullet_list.push_back(p_bullet);
 	
@@ -68,7 +68,7 @@ void MainObject::HandleMove()
 	velocity_y += acceleration;
 	rect_.y += velocity_y;
 
-	if(velocity_y > 8) velocity_y = 8; // giới hạn tốc độ nhân vật
+	if(velocity_y > MAX_VELOCITY_Y) velocity_y = MAX_VELOCITY_Y;    // giới hạn tốc độ nhân vật
 
 	if(rect_.y < 0)
 	{
@@ -76,9 +76,9 @@ void MainObject::HandleMove()
 		velocity_y = 0;
 	}
 
-    if (rect_.y + HEIGHT_MAIN_OBJECT > SCREEN_HEIGHT - 45) 
+	if (rect_.y + HEIGHT_MAIN_OBJECT >  MAX_HEIGHT_OF_MAIN) 
 	{
-        rect_.y = SCREEN_HEIGHT - 45 - HEIGHT_MAIN_OBJECT;
+		rect_.y = MAX_HEIGHT_OF_MAIN - HEIGHT_MAIN_OBJECT;
         velocity_y = 0;
     }
 }

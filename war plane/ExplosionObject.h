@@ -4,8 +4,6 @@
 #include "BaseObject.h"
 #include "thuvien.h"
 
-#define EXPLOSION_WIDTH	 165
-#define EXPLOSION_HEIGHT 165
 
 class ExplosionObject : public BaseObject
 {

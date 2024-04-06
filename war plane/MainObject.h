@@ -6,12 +6,8 @@
 #include "BulletObject.h"
 #include "thuvien.h"
 
-
-#define WIDTH_MAIN_OBJECT 80
-#define HEIGHT_MAIN_OBJECT 45
-
-const int  acceleration = 1;
-const int  SPEEDFLY = 3;
+#define  WIDTH_MAIN_OBJECT	 80
+#define  HEIGHT_MAIN_OBJECT	 45
 
 class MainObject : public BaseObject
 {

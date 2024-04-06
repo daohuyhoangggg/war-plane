@@ -9,8 +9,7 @@
 #define HEIGHT_THREAT 33 
 
 
-const int UNDER_LIMIT_THREAT = 200;	
-const int THREATS = 3;
+
 
 class ThreatObject : public BaseObject
 {
@@ -33,7 +32,7 @@ public:
 
 	void InitBullet(BulletObject* p_bullet);
 	void MakeBullet(SDL_Surface* des, const int& x_limit, const int& y_limit);
-
+	
 private:
 	int x_val_;
 	int y_val_;

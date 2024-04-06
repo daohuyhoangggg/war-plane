@@ -1,4 +1,4 @@
-
+﻿
 #include "thuvien.h"
 #include "ThreatObject.h"
 
@@ -24,8 +24,8 @@ void ThreatObject::HandleMove(const int & x_border, const int& y_border)
 	if(rect_.x < 0)
 	{
 		rect_.x = SCREEN_WIDTH;
-		rand_y = rand()% 600 + 1;
-		if(rand_y > SCREEN_HEIGHT - UNDER_LIMIT_THREAT)
+		rand_y = rand()% MAX_HEIGHT_OF_THREAT + 50;
+		if(rand_y > SCREEN_HEIGHT - UNDER_LIMIT_THREAT)					//  giảm trường hợp bị trùng
 		{
 			rand_y = SCREEN_HEIGHT * 0.3;
 		}
@@ -46,7 +46,7 @@ void ThreatObject::InitBullet(BulletObject* p_bullet)
 			p_bullet->SetWidthHeight(WIDTH_BULLET, WIDTH_BULLET);
 			p_bullet->set_type(BulletObject::BULLET_THREAT);
 			p_bullet->SetRect(rect_.x, rect_.y + rect_.h * 0.5 );
-			p_bullet->set_x_val(8);
+			p_bullet->set_x_val(SPEED_BULLET_MAIN);
 			p_bullet_list.push_back(p_bullet);
 		}
 

@@ -40,7 +40,7 @@ void ExplosionObject::set_clip()
 
 void ExplosionObject::ShowEx(SDL_Surface * des)
 {
-	if(frame_ >= 4)
+	if(frame_ >= NUMBER_OF_FRAMES)
 	{
 		frame_ = 0;
 	}

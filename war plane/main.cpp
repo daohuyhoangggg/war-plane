@@ -17,7 +17,7 @@ int  main(int arc, char* argv[])
 	// Create MainObject
 	MainObject plane_object;
 	bool ret = plane_object.LoadImg("img/plane_object.png");		// load ảnh nhân vật
-	plane_object.SetRect(100,100);
+	plane_object.SetRect(X_STAR_MAIN, Y_STAR_MAIN);
 	if(ret == NULL) 
 	{
 		 printf( "Unable to load image %s! SDL Error: %s\n", "img/plane_object.png", SDL_GetError() );
@@ -49,14 +49,14 @@ int  main(int arc, char* argv[])
 				return 0;
 			}
 
-			int rand_y = rand()% 600 + 1;
+			int rand_y = rand()% MAX_HEIGHT_OF_THREAT + 50;
 			if(rand_y > SCREEN_HEIGHT - 250)
 			{
 				rand_y = SCREEN_HEIGHT * 0.3;
 			}
 
-			p_threat->SetRect(SCREEN_WIDTH + t*400, rand_y);		// lam cho cac threat xuat hien khac thoi diem
-			p_threat->set_x_val(5);
+			p_threat->SetRect(SCREEN_WIDTH + t*500, rand_y);		// lam cho cac threat xuat hien khac thoi diem
+			p_threat->set_x_val(SPEED_THREAT);
 
 			// nap dan cho doi tuong threat
 			BulletObject* p_bullet = new BulletObject();
@@ -126,7 +126,7 @@ int  main(int arc, char* argv[])
 				p_threat->Show(gScreen);
 				if(p_threat->GetRect().x > plane_object.GetRect().x)
 				{
-					//p_threat->MakeBullet(gScreen, SCREEN_WIDTH, SCREEN_HEIGHT);
+					p_threat->MakeBullet(gScreen, SCREEN_WIDTH, SCREEN_HEIGHT);
 
 
 					// xử lý va chạm giữa main và bullet_threat 
@@ -138,7 +138,7 @@ int  main(int arc, char* argv[])
 						{
 
 							// thực hiện vụ nổ cho main object 
-							for(int ex_m = 0; ex_m < 4; ex_m++)
+							for(int ex_m = 0; ex_m < NUMBER_OF_FRAMES; ex_m++)
 							{
 								int x = (plane_object.GetRect().x + plane_object.GetRect().w * 0.5) - EXPLOSION_WIDTH * 0.5;
 								int y = (plane_object.GetRect().y + plane_object.GetRect().h * 0.5) - EXPLOSION_HEIGHT * 0.5;
@@ -170,7 +170,7 @@ int  main(int arc, char* argv[])
 					{
 
 						// thực hiện vụ nổ cho main object 
-						for(int ex_m = 0; ex_m < 4; ex_m++)
+						for(int ex_m = 0; ex_m < NUMBER_OF_FRAMES; ex_m++)
 						{
 							int x = (plane_object.GetRect().x + plane_object.GetRect().w * 0.5) - EXPLOSION_WIDTH * 0.5;
 							int y = (plane_object.GetRect().y + plane_object.GetRect().h * 0.5) - EXPLOSION_HEIGHT * 0.5;
@@ -188,7 +188,7 @@ int  main(int arc, char* argv[])
 
 
 						// thực hiện vụ nổ cho threat object 
-						for(int ex_t = 0; ex_t < 4; ex_t++)
+						for(int ex_t = 0; ex_t < NUMBER_OF_FRAMES; ex_t++)
 						{
 							int x = (p_threat->GetRect().x + p_threat->GetRect().w * 0.5) - EXPLOSION_WIDTH * 0.5;
 							int y = (p_threat->GetRect().y + p_threat->GetRect().h * 0.5) - EXPLOSION_HEIGHT * 0.5;
@@ -225,7 +225,7 @@ int  main(int arc, char* argv[])
 						if(is_col2)
 						{
 
-							for(int ex_t = 0; ex_t < 4; ex_t++)
+							for(int ex_t = 0; ex_t < NUMBER_OF_FRAMES; ex_t++)
 							{
 								int x = (p_threat->GetRect().x + p_threat->GetRect().w * 0.5) - EXPLOSION_WIDTH * 0.5;
 								int y = (p_threat->GetRect().y + p_threat->GetRect().h * 0.5) - EXPLOSION_HEIGHT * 0.5;
