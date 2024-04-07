@@ -4,8 +4,10 @@
 #include "ThreatObject.h"
 #include "ExplosionObject.h"
 #include "SkillObject.h"
+#include "TextObject.h"
 
 bool init();  // Thiet lap cua so man hinh
+TTF_Font* g_fond_text = NULL;
 
 int  main(int arc, char* argv[])
 {
@@ -85,7 +87,19 @@ int  main(int arc, char* argv[])
 		}
 	}
 
-	
+	// Create gold medal
+	gMedal = SDLCommonFunc::LoadImage(g_name_medal);
+	if(gMedal == NULL){
+		printf( "Unable to load image %s! SDL Error: %s\n", g_name_medal, SDL_GetError() );
+		return 0;
+	}
+
+	// Create point_game
+	TextObject point_game;
+	point_game.SetColor(TextObject::BLACK_TEXT);
+	int point = 0;
+
+
 	bool is_quit = false;
 	bool is_mouseButton = false;
 	bool is_play = false;
@@ -134,6 +148,9 @@ int  main(int arc, char* argv[])
 		plane_object.MakeBullet(gScreen); // xử lý đạn cho đối tượng chính
 
 
+		// Show gold medal
+		SDLCommonFunc::ApplySurface(gMedal, gScreen, 1000, 8);
+
 
 		//Make Skill object
 		for(int ss = 0; ss < SKILLS; ss++)
@@ -151,6 +168,7 @@ int  main(int arc, char* argv[])
 				{
 					if(p_skill->get_type() == 0)
 					{
+						point += 10;
 						p_skill->Reset(SCREEN_WIDTH);
 					}
 					
@@ -268,7 +286,7 @@ int  main(int arc, char* argv[])
 						bool is_col2 = SDLCommonFunc::CheckCollision(bulletM_list.at(bm)->GetRect(), p_threat->GetRect());
 						if(is_col2)
 						{
-
+							point += 10;
 							for(int ex_t = 0; ex_t < NUMBER_OF_FRAMES; ex_t++)
 							{
 								int x = (p_threat->GetRect().x + p_threat->GetRect().w * 0.5) - EXPLOSION_WIDTH * 0.5;
@@ -289,9 +307,23 @@ int  main(int arc, char* argv[])
 				}
 			}
 		}
+		// Show point_game
+		std::string val_str_point = std::to_string(point);
+		std::string strPoint("");
+		strPoint += val_str_point;
+
+		point_game.SetText(strPoint);
+		point_game.CreateText(g_fond_text, gScreen);
+
 
 		// Update screen
-		if(SDL_Flip(gScreen) == -1)return -1;			// hiển thị
+		if(SDL_Flip(gScreen) == -1)				// hiển thị
+		{
+			delete [] p_threats;
+			SDLCommonFunc::CleanUp();
+			SDL_Quit();
+			return -1;
+		}			
 	}
 
 
@@ -312,6 +344,19 @@ bool init()
 	{
 		return false;
 	}
+
+	if(TTF_Init() == -1)
+	{
+		return false;
+	}
+
+	g_fond_text = TTF_OpenFont(g_font_text, 30);
+	if(g_fond_text == NULL)
+	{
+		return false;
+	}
+
+
 	return true;
 }
 
