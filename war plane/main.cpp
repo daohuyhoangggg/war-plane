@@ -103,7 +103,9 @@ int  main(int arc, char* argv[])
 	bool is_quit = false;
 	bool is_mouseButton = false;
 	bool is_play = false;
+	bool is_skill = false;
 	int speed_screen = 0;
+	int start_time = 0;
 
 	while(!is_quit)			// cap nhap man hình
 	{
@@ -119,7 +121,13 @@ int  main(int arc, char* argv[])
 							is_mouseButton = true;	
 							is_play = true;
 							plane_object.Flap();
-							plane_object.CreateBullet();		// Đặt biến trạng thái là true khi chuột được nhấn
+							plane_object.CreateBullet1();		// Đặt biến trạng thái là true khi chuột được nhấn
+
+							if(is_skill)
+							{
+								plane_object.CreateBullet2();
+								plane_object.CreateBullet3();
+							}
 					}
 				}		
 				else if (gEven.type == SDL_MOUSEBUTTONUP) {
@@ -128,25 +136,16 @@ int  main(int arc, char* argv[])
 					}
 				}
 		}
+
 		if(is_mouseButton){
 			plane_object.Flap();
 		}	
-		
 
 		// apply background && xử lý di chuyển màn hình
 		speed_screen -= SCREEN_SPEED;
 		SDLCommonFunc::ApplySurface(gBkground, gScreen, speed_screen, 0);
 		SDLCommonFunc::ApplySurface(gBkground, gScreen, speed_screen + SCREEN_WIDTH, 0);
 		if (speed_screen <= -SCREEN_WIDTH) speed_screen = 0;
-
-		// Make MainObject
-		if(is_play)
-		{
-			plane_object.HandleMove();
-		}
-		plane_object.Show(gScreen);
-		plane_object.MakeBullet(gScreen); // xử lý đạn cho đối tượng chính
-
 
 		// Show gold medal
 		SDLCommonFunc::ApplySurface(gMedal, gScreen, 1000, 8);
@@ -171,11 +170,40 @@ int  main(int arc, char* argv[])
 						point += 10;
 						p_skill->Reset(SCREEN_WIDTH);
 					}
-					
+					else
+					{	
+						is_skill = true;							// Cường hóa đạn
+						p_skill->Reset(SCREEN_WIDTH);
+					}
+
 				}
 
 			}
 		}
+
+		if(is_skill)
+		{
+			UINT32 curent_time = SDL_GetTicks() / 1000 ;
+			std::cout << start_time << " " << curent_time << " " << curent_time - start_time << "\n";
+			if(curent_time - start_time >= TIME_SKILL)
+			{
+				is_skill = false;
+				start_time = curent_time;
+
+			}
+		}
+
+
+		// Make MainObject
+		if(is_play)
+		{
+			plane_object.HandleMove();
+		}
+		plane_object.Show(gScreen);
+		plane_object.MakeBullet(gScreen); // xử lý đạn cho đối tượng chính
+
+
+	
 
 
 		// Make ThreatObject
@@ -198,6 +226,7 @@ int  main(int arc, char* argv[])
 						bool is_col = SDLCommonFunc::CheckCollision(plane_object.GetRect(), bulletT_list.at(bt)->GetRect());
 						if(is_col)
 						{
+							is_skill = false;
 
 							// thực hiện vụ nổ cho main object 
 							for(int ex_m = 0; ex_m < NUMBER_OF_FRAMES; ex_m++)
@@ -230,6 +259,7 @@ int  main(int arc, char* argv[])
 					bool is_col1 = SDLCommonFunc::CheckCollision(plane_object.GetRect(), p_threat->GetRect());
 					if(is_col1)
 					{
+						is_skill = false;
 
 						// thực hiện vụ nổ cho main object 
 						for(int ex_m = 0; ex_m < NUMBER_OF_FRAMES; ex_m++)
@@ -307,6 +337,8 @@ int  main(int arc, char* argv[])
 				}
 			}
 		}
+
+
 		// Show point_game
 		std::string val_str_point = std::to_string(point);
 		std::string strPoint("");
@@ -316,10 +348,12 @@ int  main(int arc, char* argv[])
 		point_game.CreateText(g_fond_text, gScreen);
 
 
+
 		// Update screen
 		if(SDL_Flip(gScreen) == -1)				// hiển thị
 		{
 			delete [] p_threats;
+			delete [] p_skills;
 			SDLCommonFunc::CleanUp();
 			SDL_Quit();
 			return -1;

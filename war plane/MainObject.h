@@ -18,7 +18,10 @@ public:
 	void Flap();			
 	void HandleMove();		// Xu ly di chuyen
 
-	void CreateBullet();
+	void CreateBullet1();
+	void CreateBullet2();
+	void CreateBullet3();
+
 	void MakeBullet(SDL_Surface* des);
 
 	void SetBulletList(std::vector<BulletObject*> bullet_list) {p_bullet_list = bullet_list;}			

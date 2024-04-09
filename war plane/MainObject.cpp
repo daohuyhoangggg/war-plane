@@ -22,7 +22,7 @@ void MainObject::Flap()
 {
 	velocity_y = -SPEEDFLY;
 }
-void MainObject::CreateBullet()
+void MainObject::CreateBullet1()
 {
 	BulletObject* p_bullet = new BulletObject();
 	p_bullet->SetWidthHeight(WIDTH_BULLET, WIDTH_BULLET);
@@ -36,6 +36,43 @@ void MainObject::CreateBullet()
 	p_bullet_list.push_back(p_bullet);
 	
 }
+
+
+void MainObject::CreateBullet2()
+{
+	BulletObject* p_bullet = new BulletObject();
+	p_bullet->SetWidthHeight(WIDTH_BULLET, WIDTH_BULLET);
+	p_bullet->LoadImg(g_name_bullet_main_obj);
+	p_bullet->set_type(BulletObject::BULLET_MAIN);
+
+
+	p_bullet->SetRect(this->rect_.x + this->rect_.w - 30 , this->rect_.y + this->rect_.h * 0.8);
+	p_bullet->set_is_move(true);
+	p_bullet->set_x_val(SPEED_BULLET_MAIN);
+	p_bullet->set_y_val(2);
+
+	p_bullet_list.push_back(p_bullet);
+
+}
+
+
+void MainObject::CreateBullet3()
+{
+	BulletObject* p_bullet = new BulletObject();
+	p_bullet->SetWidthHeight(WIDTH_BULLET, WIDTH_BULLET);
+	p_bullet->LoadImg(g_name_bullet_main_obj);
+	p_bullet->set_type(BulletObject::BULLET_MAIN);
+
+
+	p_bullet->SetRect(this->rect_.x + this->rect_.w - 30 , this->rect_.y + this->rect_.h * 0.8);
+	p_bullet->set_is_move(true);
+	p_bullet->set_x_val(SPEED_BULLET_MAIN);
+	p_bullet->set_y_val(-2);
+
+	p_bullet_list.push_back(p_bullet);
+
+}
+
 
 void MainObject::MakeBullet(SDL_Surface* des)
 {

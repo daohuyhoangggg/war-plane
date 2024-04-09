@@ -1,4 +1,4 @@
-#ifndef SKILL_OBJECT_H_
+﻿#ifndef SKILL_OBJECT_H_
 #define SKILL_OBJECT_H_
 
 #include "BaseObject.h"
@@ -10,7 +10,8 @@ class SkillObject : public BaseObject
 {
 public:
 	enum{
-		STAR = 0,	
+		STAR = 0,			// cộng điểm
+		SHIELD = 1			// cường hóa đạn
 	};
 
 	SkillObject ();

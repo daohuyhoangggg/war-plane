@@ -16,15 +16,21 @@ SkillObject::~SkillObject()
 
 void SkillObject::InitSkill(SkillObject* p_object)
 {
-	int frequency1 = rand() % 10 + 1;			// xác suất xuất hiện của skill
+	int frequency = rand() % 10 + 1;			// xác suất xuất hiện của skill
 
-	if(frequency1 <= 5)
+	if(frequency <= 8)
 	{
-		p_object->LoadImg(g_name_skill_obj);
+		p_object->LoadImg(g_name_skill1_obj);
 		p_object->set_type(SkillObject::STAR);
 		p_skill_list.push_back(p_object);
 	}
 
+	if(frequency >= 9)
+	{
+		p_object->LoadImg(g_name_skill2_obj);
+		p_object->set_type(SkillObject::SHIELD);
+		p_skill_list.push_back(p_object);
+	}
 
 }
 

@@ -2,6 +2,7 @@
 #define COMMON_FUNCTION_H_
 
 #include<windows.h>
+#include<iostream>
 #include<SDL.h>
 #include<string>
 #include<SDL_image.h>
@@ -30,7 +31,7 @@ const int SPEED_BULLET_MAIN		= 10;
 
 // THREAT OBJECT
 const int THREATS				= 2;
-const int UNDER_LIMIT_THREAT	= 200;			// giới hạn dưới của mối đe dọa 
+const int UNDER_LIMIT_THREAT	= 100;			// giới hạn dưới của mối đe dọa 
 const int MAX_HEIGHT_OF_THREAT	= 600;			// độ cao giới hạn 
 const int SPEED_THREAT			= 6;
 const int SPEED_BULLET_THREAT	= 8;
@@ -47,7 +48,8 @@ const int  WIDTH_SKILL			=   50;
 const int  HEIGHT_SKILL			=  49;
 const int SKILLS				= 3;
 const int MAX_HEIGHT_OF_SKILL	= 600;
-const int UNDER_LIMIT_SKILL		= 200;
+const int UNDER_LIMIT_SKILL		= 150;
+const int TIME_SKILL			= 10;
 
 //GOLD MEDAL
 static SDL_Surface* gMedal      = NULL;
@@ -72,7 +74,8 @@ static char g_name_bullet_threat_obj[]	= {"img/bullet_threat.png"};
 
 static char g_name_exp_obj[]			= {"img/exp.png"};
 
-static char g_name_skill_obj[]			= {"img/sao.png"};
+static char g_name_skill1_obj[]			= {"img/sao.png"};
+static char g_name_skill2_obj[]			= {"img/cuong hoa.png"};
 static char g_name_medal[]				= {"img/gold.png"};
 
 static char g_font_text[]				={"ttf/dlxfont.ttf"};
