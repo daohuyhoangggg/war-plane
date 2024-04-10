@@ -32,7 +32,8 @@ public:
 
 	void InitBullet(BulletObject* p_bullet);
 	void MakeBullet(SDL_Surface* des, const int& x_limit, const int& y_limit);
-	
+	void ResetBullet(BulletObject* p_bullet);
+
 private:
 	int x_val_;
 	int y_val_;

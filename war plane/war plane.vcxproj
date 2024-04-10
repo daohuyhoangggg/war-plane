@@ -82,6 +82,7 @@
     <ClCompile Include="BulletObject.cpp" />
     <ClCompile Include="BaseObject.cpp" />
     <ClCompile Include="ExplosionObject.cpp" />
+    <ClCompile Include="HeartObject.cpp" />
     <ClCompile Include="MainObject.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="SkillObject.cpp" />
@@ -93,6 +94,7 @@
     <ClInclude Include="BulletObject.h" />
     <ClInclude Include="BaseObject.h" />
     <ClInclude Include="ExplosionObject.h" />
+    <ClInclude Include="HeartObject.h" />
     <ClInclude Include="MainObject.h" />
     <ClInclude Include="SkillObject.h" />
     <ClInclude Include="TextObject.h" />

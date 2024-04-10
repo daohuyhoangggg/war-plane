@@ -87,4 +87,18 @@ void ThreatObject::Reset(const int& x_border)
 	}
 	rect_.y = rand_y;
 
+	for(int i = 0; i < p_bullet_list.size(); i++)
+	{
+		BulletObject* p_bullet = p_bullet_list.at(i);
+		if(p_bullet)
+		{
+			ResetBullet(p_bullet);
+		}
+	}
+}
+
+void ThreatObject::ResetBullet(BulletObject* p_bullet)
+{
+	// xet lai vi tri ban dau cho dan
+	p_bullet->SetRect(rect_.x, rect_.y + rect_.h * 0.5);
 }

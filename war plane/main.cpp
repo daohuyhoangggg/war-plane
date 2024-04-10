@@ -5,6 +5,7 @@
 #include "ExplosionObject.h"
 #include "SkillObject.h"
 #include "TextObject.h"
+#include "HeartObject.h"
 
 bool init();  // Thiet lap cua so man hinh
 TTF_Font* g_fond_text = NULL;
@@ -27,6 +28,10 @@ int  main(int arc, char* argv[])
 		return 0;
 	}
 	
+
+	//Create Player power
+	HeartPlayer heart_player;
+	heart_player.Init();
 
 	//Create ExplosionObject
 	ExplosionObject exp;		
@@ -106,6 +111,7 @@ int  main(int arc, char* argv[])
 	bool is_skill = false;
 	int speed_screen = 0;
 	int start_time = 0;
+	int die_number = 0;
 
 	while(!is_quit)			// cap nhap man hình
 	{
@@ -150,6 +156,8 @@ int  main(int arc, char* argv[])
 		// Show gold medal
 		SDLCommonFunc::ApplySurface(gMedal, gScreen, 1000, 8);
 
+		// Show player power
+		heart_player.Render(gScreen);
 
 		//Make Skill object
 		for(int ss = 0; ss < SKILLS; ss++)
@@ -202,7 +210,54 @@ int  main(int arc, char* argv[])
 		plane_object.Show(gScreen);
 		plane_object.MakeBullet(gScreen); // xử lý đạn cho đối tượng chính
 
+		// xử lý va chạm với nước
 
+		if(plane_object.GetRect().y  + HEIGHT_MAIN_OBJECT >= SCREEN_HEIGHT - 50)
+		{	
+			is_skill = false;
+
+			// thực hiện vụ nổ cho main object 
+			for(int ex_m = 0; ex_m < NUMBER_OF_FRAMES; ex_m++)
+			{
+				int x = (plane_object.GetRect().x + plane_object.GetRect().w * 0.5) - EXPLOSION_WIDTH * 0.5;
+				int y = (plane_object.GetRect().y + plane_object.GetRect().h * 0.5) - EXPLOSION_HEIGHT * 0.5;
+
+				exp.set_frame(ex_m);
+				exp.SetRect(x, y);
+				exp.ShowEx(gScreen);
+			
+				if(SDL_Flip(gScreen) == -1)return -1;
+
+			
+			}
+			die_number++;
+			if(die_number <= 2)
+			{
+				SDL_Delay(1000);
+				plane_object.SetRect(X_STAR_MAIN, Y_STAR_MAIN);
+				is_play = false;
+				heart_player.Decrease();
+				heart_player.Render(gScreen);
+
+
+				if(SDL_Flip(gScreen) == -1)
+				{
+					delete [] p_threats;
+					SDLCommonFunc::CleanUp();
+					SDL_Quit();
+					return -1;
+				}
+			}
+			else
+			{
+				if(MessageBox(NULL, L"GAME OVER!", L"Info", MB_OK) == IDOK)
+				{
+					SDLCommonFunc::CleanUp();
+					SDL_Quit();
+					return -1;
+				}
+			}
+		} 
 	
 
 
@@ -244,12 +299,33 @@ int  main(int arc, char* argv[])
 
 							}
 
-							if(MessageBox(NULL, L"GAME OVER!", L"Info", MB_OK) == IDOK)
+							die_number ++;
+							if(die_number <= 2)
 							{
-								SDLCommonFunc::CleanUp();
-								SDL_Quit();
-								return -1;
+								SDL_Delay(1000);
+								plane_object.SetRect(X_STAR_MAIN, Y_STAR_MAIN);
+								is_play = false;
+								heart_player.Decrease();
+								p_threat->Reset(SCREEN_WIDTH); 
+								heart_player.Render(gScreen);
+
+								if(SDL_Flip(gScreen) == -1)
+								{
+									delete [] p_threats;
+									SDLCommonFunc::CleanUp();
+									SDL_Quit();
+									return -1;
+								}
 							}
+							else
+							{
+								if(MessageBox(NULL, L"GAME OVER!", L"Info", MB_OK) == IDOK)
+								{
+									SDLCommonFunc::CleanUp();
+									SDL_Quit();
+									return -1;
+								}
+							}	
 						}
 					} 
 
@@ -299,12 +375,33 @@ int  main(int arc, char* argv[])
 						}
 
 
-						if(MessageBox(NULL, L"GAME OVER!", L"Info", MB_OK) == IDOK)
+						die_number ++;
+						if(die_number <= 2)
 						{
-							SDLCommonFunc::CleanUp();
-							SDL_Quit();
-							return -1;
+							SDL_Delay(1000);
+							plane_object.SetRect(X_STAR_MAIN, Y_STAR_MAIN);
+							is_play = false;
+							heart_player.Decrease();
+							p_threat->Reset(SCREEN_WIDTH);
+							heart_player.Render(gScreen);
+
+							if(SDL_Flip(gScreen) == -1)
+							{
+								delete [] p_threats;
+								SDLCommonFunc::CleanUp();
+								SDL_Quit();
+								return -1;
+							}
 						}
+						else
+						{
+							if(MessageBox(NULL, L"GAME OVER!", L"Info", MB_OK) == IDOK)
+							{
+								SDLCommonFunc::CleanUp();
+								SDL_Quit();
+								return -1;
+							}
+						}	
 					}
 
 
