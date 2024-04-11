@@ -34,10 +34,11 @@ const int MAX_VELOCITY_Y		= 8;
 const int SPEED_BULLET_MAIN		= 10;
 
 // THREAT OBJECT
-const int THREATS				= 2;
-const int UNDER_LIMIT_THREAT	= 100;			// giới hạn dưới của mối đe dọa 
+const int THREATS				= 3;
+const int UNDER_LIMIT_THREAT	= 150;			// giới hạn dưới của mối đe dọa 
 const int MAX_HEIGHT_OF_THREAT	= 600;			// độ cao giới hạn 
-const int SPEED_THREAT			= 6;
+const int SPEED_THREAT1			= 4;
+const int SPEED_THREAT2			=10;
 const int SPEED_BULLET_THREAT	= 8;
 
 
@@ -73,7 +74,10 @@ static char g_name_back_ground[]		= {"img/background_game.jpg"};
 static char g_name_main_obj[]			= {"img/plane_object.png"};
 static char g_name_bullet_main_obj[]	= {"img/bullet_main.png"};
 
-static char g_name_threat_obj[]			= {"img/threat.png"};
+
+static char g_name_threat1_obj[]			= {"img/threat1.png"};
+static char g_name_threat2_obj[]			= {"img/threat2.png"};
+
 static char g_name_bullet_threat_obj[]	= {"img/bullet_threat.png"};
 
 static char g_name_exp_obj[]			= {"img/exp.png"};

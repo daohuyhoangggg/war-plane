@@ -50,12 +50,31 @@ int  main(int arc, char* argv[])
 		ThreatObject* p_threat = (p_threats + t);
 		if(p_threat)
 		{
-			ret = p_threat->LoadImg(g_name_threat_obj);
-			if(ret == NULL)
-			{
-				printf( "Unable to load image %s! SDL Error: %s\n", g_name_threat_obj, SDL_GetError() );
-				return 0;
+			int frequency = rand() % 10 + 1;
+			if(frequency <= 5){
+
+				ret = p_threat->LoadImg(g_name_threat1_obj);
+				p_threat->set_type(ThreatObject::THREAT1);
+
+				if(ret == NULL)return 0;
+				p_threat->set_x_val(SPEED_THREAT1);
+				
+				// nap dan cho doi tuong threat
+				BulletObject* p_bullet = new BulletObject();
+				p_threat->InitBullet(p_bullet);
 			}
+
+			else{
+
+				ret = p_threat->LoadImg(g_name_threat2_obj);
+				p_threat->set_type(ThreatObject::THREAT2);
+
+				if(ret == NULL)return 0;
+				p_threat->set_x_val(SPEED_THREAT2);
+
+			}
+
+			// cho threat ở vị trí ngẫu nhiên
 
 			int rand_y = rand()% MAX_HEIGHT_OF_THREAT + 50;
 			if(rand_y > SCREEN_HEIGHT - UNDER_LIMIT_THREAT)
@@ -63,12 +82,7 @@ int  main(int arc, char* argv[])
 				rand_y = SCREEN_HEIGHT * 0.3;
 			}
 
-			p_threat->SetRect(SCREEN_WIDTH + t*500, rand_y);		// lam cho cac threat xuat hien khac thoi diem
-			p_threat->set_x_val(SPEED_THREAT);
-
-			// nap dan cho doi tuong threat
-			BulletObject* p_bullet = new BulletObject();
-			p_threat->InitBullet(p_bullet);
+			p_threat->SetRect(SCREEN_WIDTH + t*400, rand_y);		// lam cho cac threat xuat hien khac thoi diem
 
 		}
 	
@@ -83,7 +97,7 @@ int  main(int arc, char* argv[])
 		if(p_skill)
 		{
 			int rand_y = rand()% MAX_HEIGHT_OF_THREAT + 30;
-			if(rand_y > SCREEN_HEIGHT - UNDER_LIMIT_THREAT)
+			if(rand_y > SCREEN_HEIGHT - UNDER_LIMIT_SKILL)
 			{
 				rand_y = SCREEN_HEIGHT * 0.3;
 			} 

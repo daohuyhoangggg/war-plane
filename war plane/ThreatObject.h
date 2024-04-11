@@ -14,7 +14,10 @@
 class ThreatObject : public BaseObject
 {
 public:
-
+	enum{
+		THREAT1 = 0,
+		THREAT2 = 1
+	};
 	ThreatObject();
 	~ThreatObject();
 
@@ -24,6 +27,8 @@ public:
 	int get_x_val() const {return x_val_;}
 	int get_y_val() const {return y_val_;}
 
+	int get_type() const {return threat_type;}
+	void set_type(const int& type) {threat_type = type;}
 
 	// xu ly dan cho doi tuong threat
 	void SetBulletList(std::vector<BulletObject*> bullet_list) {p_bullet_list = bullet_list;}
@@ -37,6 +42,7 @@ public:
 private:
 	int x_val_;
 	int y_val_;
+	int threat_type;
 	std::vector<BulletObject*> p_bullet_list;
 
 
