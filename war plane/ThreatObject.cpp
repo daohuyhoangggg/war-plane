@@ -102,3 +102,32 @@ void ThreatObject::ResetBullet(BulletObject* p_bullet)
 	// xet lai vi tri ban dau cho dan
 	p_bullet->SetRect(rect_.x, rect_.y + rect_.h * 0.5);
 }
+
+
+void ThreatObject::Reset(ThreatObject* p_threats)
+{
+	for(int s = 0; s < THREATS; s++) 
+	{
+		ThreatObject* p_threat = (p_threats + s);
+		if(p_threat) 
+		{
+			rect_.x = SCREEN_WIDTH;
+
+			int rand_y = rand() % MAX_HEIGHT_OF_THREAT + 50;
+			if(rand_y > SCREEN_HEIGHT - UNDER_LIMIT_THREAT) {
+				rand_y = SCREEN_HEIGHT * 0.3;
+			}
+
+			p_threat->SetRect(SCREEN_WIDTH + s * 400, rand_y);
+
+			for(int i = 0; i < p_bullet_list.size(); i++)
+			{
+				BulletObject* p_bullet = p_bullet_list.at(i);
+				if(p_bullet)
+				{
+					ResetBullet(p_bullet);
+				}
+			}
+		}
+	}
+}

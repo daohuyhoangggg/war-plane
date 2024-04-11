@@ -21,6 +21,7 @@ public:
 	void MakeSkill(SDL_Surface* des, const int& x_limit, const int& y_limit);
 	void HandleMove(const int& x_border, const int& y_border);
 	void Reset(const int& x_border);
+	void Reset(SkillObject* p_skills);
 
 	int get_type() const {return skill_type_;}
 	void set_type(const int& type) {skill_type_ = type;}

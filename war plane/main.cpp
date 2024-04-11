@@ -252,7 +252,8 @@ int  main(int arc, char* argv[])
 				is_play = false;
 				heart_player.Decrease();
 				heart_player.Render(gScreen);
-
+				p_threats->Reset(p_threats);
+				p_skills->Reset(p_skills);
 
 				if(SDL_Flip(gScreen) == -1)
 				{
@@ -320,7 +321,8 @@ int  main(int arc, char* argv[])
 								plane_object.SetRect(X_STAR_MAIN, Y_STAR_MAIN);
 								is_play = false;
 								heart_player.Decrease();
-								p_threat->Reset(SCREEN_WIDTH); 
+								p_threat->Reset(p_threats); 
+								p_skills->Reset(p_skills);
 								heart_player.Render(gScreen);
 
 								if(SDL_Flip(gScreen) == -1)
@@ -396,7 +398,8 @@ int  main(int arc, char* argv[])
 							plane_object.SetRect(X_STAR_MAIN, Y_STAR_MAIN);
 							is_play = false;
 							heart_player.Decrease();
-							p_threat->Reset(SCREEN_WIDTH);
+							p_threat->Reset(p_threats);
+							p_skills->Reset(p_skills);
 							heart_player.Render(gScreen);
 
 							if(SDL_Flip(gScreen) == -1)
@@ -441,7 +444,7 @@ int  main(int arc, char* argv[])
 							}
 							
 							bulletM_list.at(bm)->set_is_move(false);
-							p_threat->Reset(SCREEN_WIDTH);	
+							p_threat->Reset(SCREEN_WIDTH * tt);	
 
 						}
 

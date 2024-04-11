@@ -75,3 +75,22 @@ void SkillObject::Reset(const int& x_border)
 	rect_.y = rand_y;
 
 }
+
+void SkillObject::Reset(SkillObject* p_skills)
+{
+	for(int s = 0; s < SKILLS; s++) 
+	{
+		SkillObject* p_skill = (p_skills + s);
+		if(p_skill) 
+		{
+			rect_.x = SCREEN_WIDTH;
+
+			int rand_y = rand() % MAX_HEIGHT_OF_THREAT + 50;
+			if(rand_y > SCREEN_HEIGHT - UNDER_LIMIT_SKILL) {
+				rand_y = SCREEN_HEIGHT * 0.3;
+			}
+
+			p_skill->SetRect(SCREEN_WIDTH + s * 400, rand_y);
+		}
+	}
+}

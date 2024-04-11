@@ -33,7 +33,8 @@ public:
 	// xu ly dan cho doi tuong threat
 	void SetBulletList(std::vector<BulletObject*> bullet_list) {p_bullet_list = bullet_list;}
 	std::vector<BulletObject*> GetBulletList() const {return p_bullet_list;}
-	void Reset(const int& x_border);
+	void Reset(const int& x_border);			// reset each object
+	void Reset(ThreatObject* p_threats);		// reset all
 
 	void InitBullet(BulletObject* p_bullet);
 	void MakeBullet(SDL_Surface* des, const int& x_limit, const int& y_limit);
