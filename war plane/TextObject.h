@@ -3,7 +3,7 @@
 
 #include "BaseObject.h"
 #include "thuvien.h"
-#include<SDL_ttf.h>
+
 
 class TextObject : public BaseObject
 {

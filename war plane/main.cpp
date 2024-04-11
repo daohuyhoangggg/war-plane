@@ -58,7 +58,7 @@ int  main(int arc, char* argv[])
 			}
 
 			int rand_y = rand()% MAX_HEIGHT_OF_THREAT + 50;
-			if(rand_y > SCREEN_HEIGHT - 250)
+			if(rand_y > SCREEN_HEIGHT - UNDER_LIMIT_THREAT)
 			{
 				rand_y = SCREEN_HEIGHT * 0.3;
 			}
@@ -82,7 +82,7 @@ int  main(int arc, char* argv[])
 		SkillObject* p_skill = (p_skills + s);
 		if(p_skill)
 		{
-			int rand_y = rand()% MAX_HEIGHT_OF_THREAT + 20;
+			int rand_y = rand()% MAX_HEIGHT_OF_THREAT + 30;
 			if(rand_y > SCREEN_HEIGHT - UNDER_LIMIT_THREAT)
 			{
 				rand_y = SCREEN_HEIGHT * 0.3;
@@ -127,7 +127,7 @@ int  main(int arc, char* argv[])
 							is_mouseButton = true;	
 							is_play = true;
 							plane_object.Flap();
-							plane_object.CreateBullet1();		// Đặt biến trạng thái là true khi chuột được nhấn
+							plane_object.CreateBullet1(g_sound_bullet);		// Đặt biến trạng thái là true khi chuột được nhấn
 
 							if(is_skill)
 							{
@@ -210,8 +210,8 @@ int  main(int arc, char* argv[])
 		plane_object.Show(gScreen);
 		plane_object.MakeBullet(gScreen); // xử lý đạn cho đối tượng chính
 
-		// xử lý va chạm với nước
 
+		// xử lý va chạm với nước
 		if(plane_object.GetRect().y  + HEIGHT_MAIN_OBJECT >= SCREEN_HEIGHT - 50)
 		{	
 			is_skill = false;
@@ -225,7 +225,7 @@ int  main(int arc, char* argv[])
 				exp.set_frame(ex_m);
 				exp.SetRect(x, y);
 				exp.ShowEx(gScreen);
-			
+				Mix_PlayChannel(-1, g_sound_exp[1], 0);
 				if(SDL_Flip(gScreen) == -1)return -1;
 
 			
@@ -292,7 +292,7 @@ int  main(int arc, char* argv[])
 								exp.set_frame(ex_m);
 								exp.SetRect(x, y);
 								exp.ShowEx(gScreen);
-
+								Mix_PlayChannel(-1, g_sound_exp[1], 0);
 
 								if(SDL_Flip(gScreen) == -1)return -1;
 
@@ -346,7 +346,7 @@ int  main(int arc, char* argv[])
 							exp.set_frame(ex_m);
 							exp.SetRect(x, y);
 							exp.ShowEx(gScreen);
-							
+							Mix_PlayChannel(-1, g_sound_exp[1], 0);
 
 							if(SDL_Flip(gScreen) == -1)return -1;
 
@@ -422,6 +422,7 @@ int  main(int arc, char* argv[])
 								exp.set_frame(ex_t);
 								exp.SetRect(x, y);
 								exp.ShowEx(gScreen);
+								Mix_PlayChannel(-1, g_sound_exp[0], 0);
 								if(SDL_Flip(gScreen) == -1)return -1;
 							}
 							
@@ -487,6 +488,22 @@ bool init()
 		return false;
 	}
 
+	if(Mix_OpenAudio(22050, MIX_DEFAULT_FORMAT, 2, 4096) == -1)
+	{
+		return false;
+	}
+
+	// load âm thanh
+	g_sound_bullet = Mix_LoadWAV(g_name_sound_bullet_main);
+	g_sound_exp[0] = Mix_LoadWAV(g_name_sound_exp_threat_obj);
+	g_sound_exp[1] = Mix_LoadWAV(g_name_sound_exp_main_obj);
+	g_sound_skill[0]  = Mix_LoadWAV(g_name_sound_exp_skill1);
+	g_sound_skill[1] = Mix_LoadWAV(g_name_sound_exp_skill2);
+
+	if(g_sound_bullet == NULL || g_sound_exp[0] == NULL || g_sound_exp[1] == NULL || g_sound_skill == NULL)
+	{
+		return false;
+	}
 
 	return true;
 }

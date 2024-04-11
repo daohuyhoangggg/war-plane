@@ -80,7 +80,7 @@ void ThreatObject::MakeBullet(SDL_Surface* des, const int& x_limit, const int& y
 void ThreatObject::Reset(const int& x_border)
 {
 	rect_.x = x_border;
-	int rand_y = rand()% 600 + 10;
+	int rand_y = rand()% 600 + 50;
 	if(rand_y > SCREEN_HEIGHT - UNDER_LIMIT_THREAT)
 	{
 		rand_y = SCREEN_HEIGHT * 0.3;

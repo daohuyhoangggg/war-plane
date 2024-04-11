@@ -22,7 +22,7 @@ void MainObject::Flap()
 {
 	velocity_y = -SPEEDFLY;
 }
-void MainObject::CreateBullet1()
+void MainObject::CreateBullet1(Mix_Chunk* bullet_sound)
 {
 	BulletObject* p_bullet = new BulletObject();
 	p_bullet->SetWidthHeight(WIDTH_BULLET, WIDTH_BULLET);
@@ -32,6 +32,7 @@ void MainObject::CreateBullet1()
 	p_bullet->SetRect(this->rect_.x + this->rect_.w - 30 , this->rect_.y + this->rect_.h * 0.8);
 	p_bullet->set_is_move(true);
 	p_bullet->set_x_val(SPEED_BULLET_MAIN);
+	Mix_PlayChannel(-1, bullet_sound, 0);
 
 	p_bullet_list.push_back(p_bullet);
 	

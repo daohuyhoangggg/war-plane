@@ -4,15 +4,19 @@
 #include<windows.h>
 #include<iostream>
 #include<SDL.h>
-#include<string>
 #include<SDL_image.h>
+#include<SDL_ttf.h>
+#include <SDL_mixer.h>
 #include<vector>
-
+#include<string>
 
 static SDL_Surface* gScreen = NULL;
 static SDL_Surface* gBkground = NULL;
 static SDL_Event gEven;
 
+static Mix_Chunk* g_sound_bullet;
+static Mix_Chunk* g_sound_exp[2];
+static Mix_Chunk* g_sound_skill[2];
 
 //Screen
 const int SCREEN_WIDTH			= 1200;
@@ -79,6 +83,12 @@ static char g_name_skill2_obj[]			= {"img/cuong hoa.png"};
 static char g_name_medal[]				= {"img/gold.png"};
 
 static char g_font_text[]				={"ttf/dlxfont.ttf"};
+
+static char g_name_sound_bullet_main[]		= {"mix/gun.wav"};
+static char g_name_sound_exp_threat_obj[]	= {"mix/Explosion+1.wav"};
+static char g_name_sound_exp_main_obj[]		= {"mix/Explosion+9.wav"};
+static char g_name_sound_exp_skill1[]		= {"mix/hieu_ung_skill.wav"};
+static char g_name_sound_exp_skill2[]		= {"mix/sound_skill2.wav"};
 
 namespace SDLCommonFunc
 {

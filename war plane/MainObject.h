@@ -18,7 +18,7 @@ public:
 	void Flap();			
 	void HandleMove();		// Xu ly di chuyen
 
-	void CreateBullet1();
+	void CreateBullet1(Mix_Chunk* bullet_sound);
 	void CreateBullet2();
 	void CreateBullet3();
 
