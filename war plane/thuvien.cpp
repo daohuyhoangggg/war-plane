@@ -2,7 +2,6 @@
 #include"thuvien.h"
 #include "TextObject.h"
 
-
 bool SDLCommonFunc::CheckForcusWithRect(const int& x, const int& y, const SDL_Rect& rect)
 {
 	if(x >= rect.x && x < rect.x + rect.w && 
@@ -13,7 +12,6 @@ bool SDLCommonFunc::CheckForcusWithRect(const int& x, const int& y, const SDL_Re
 	return false;
 
 }
-
 int SDLCommonFunc::ShowMenu(SDL_Surface* des, TTF_Font* font)
 {
 
@@ -177,12 +175,14 @@ SDL_Surface* SDLCommonFunc::LoadImage(std::string file_path)
 	return optimizeImage;
 }
 
-void SDLCommonFunc::ApplySurface(SDL_Surface* src, SDL_Surface* des, int x, int y)				// vẽ lên tọa độ cụ thể
+SDL_Rect SDLCommonFunc::ApplySurface(SDL_Surface* src, SDL_Surface* des, int x, int y)				// vẽ lên tọa độ cụ thể
 {
 	SDL_Rect offset;
 	offset.x = x;
 	offset.y = y;
 	SDL_BlitSurface(src, NULL, des, &offset);
+
+	return offset;
 }
 
 

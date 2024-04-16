@@ -515,7 +515,7 @@ bool init()
 		return false;
 	}
 
-	g_fond_text = TTF_OpenFont(g_font_text, 20);
+	g_fond_text = TTF_OpenFont("ttf/dlxfont.ttf", 20);
 	if(g_fond_text == NULL)
 	{
 		return false;

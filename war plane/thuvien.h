@@ -88,7 +88,7 @@ static char g_name_skill1_obj[]			= {"img/sao.png"};
 static char g_name_skill2_obj[]			= {"img/cuong hoa.png"};
 static char g_name_medal[]				= {"img/gold.png"};
 
-static char g_font_text[]				={"ttf/dlxfont.ttf"};
+
 
 static char g_name_sound_bullet_main[]		= {"mix/gun.wav"};
 static char g_name_sound_exp_threat_obj[]	= {"mix/Explosion+1.wav"};
@@ -99,7 +99,7 @@ static char g_name_sound_exp_skill2[]		= {"mix/sound_skill2.wav"};
 namespace SDLCommonFunc
 {
 	SDL_Surface* LoadImage(std::string file_path);				// tải ảnh 
-	void ApplySurface(SDL_Surface* src, SDL_Surface* des, int x, int y);    // vẽ ảnh src lên des(màn hinh) tại tọa độ(x,y)
+	SDL_Rect ApplySurface(SDL_Surface* src, SDL_Surface* des, int x, int y);    // vẽ ảnh src lên des(màn hinh) tại tọa độ(x,y)
 	void ApplySurfaceClip(SDL_Surface* src, SDL_Surface* des, SDL_Rect* clip, int x ,int y);
 	bool CheckCollision(const SDL_Rect& object1, const SDL_Rect& object2);		// xử lý va chạm
 	int	 ShowMenu(SDL_Surface* des, TTF_Font* font);
