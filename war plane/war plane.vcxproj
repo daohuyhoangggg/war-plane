@@ -101,6 +101,9 @@
     <ClInclude Include="ThreatObject.h" />
     <ClInclude Include="thuvien.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="best_score.txt" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

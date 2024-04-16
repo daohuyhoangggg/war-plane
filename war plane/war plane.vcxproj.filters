@@ -75,4 +75,7 @@
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="best_score.txt" />
+  </ItemGroup>
 </Project>

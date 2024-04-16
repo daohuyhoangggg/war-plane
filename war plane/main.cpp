@@ -10,6 +10,10 @@
 bool init();  // Thiet lap cua so man hinh
 TTF_Font* g_fond_text = NULL;
 
+void saveHighScore(int score);  // Lưu điểm số cao nhất
+int loadHighScore();			// Tải điểm cao nhất
+
+
 int  main(int arc, char* argv[])
 {
 
@@ -50,8 +54,8 @@ int  main(int arc, char* argv[])
 		ThreatObject* p_threat = (p_threats + t);
 		if(p_threat)
 		{
-			int frequency = rand() % 10 + 1;
-			if(frequency <= 5){
+			int frequency = rand() % 15 + 1;
+			if(frequency <= 7){
 
 				ret = p_threat->LoadImg(g_name_threat1_obj);
 				p_threat->set_type(ThreatObject::THREAT1);
@@ -126,6 +130,10 @@ int  main(int arc, char* argv[])
 	int speed_screen = 0;
 	int start_time = 0;
 	int die_number = 0;
+
+	int ret_menu = SDLCommonFunc::ShowMenu(gScreen, g_fond_text);
+	if(ret_menu == 1)is_quit = true;
+
 
 	while(!is_quit)			// cap nhap man hình
 	{
@@ -265,6 +273,9 @@ int  main(int arc, char* argv[])
 			}
 			else
 			{
+
+				if(point > loadHighScore())saveHighScore(point);		
+
 				if(MessageBox(NULL, L"GAME OVER!", L"Info", MB_OK) == IDOK)
 				{
 					SDLCommonFunc::CleanUp();
@@ -284,6 +295,7 @@ int  main(int arc, char* argv[])
 			{
 				p_threat->HandleMove(SCREEN_WIDTH, SCREEN_HEIGHT);
 				p_threat->Show(gScreen);
+
 				if(p_threat->GetRect().x > plane_object.GetRect().x)
 				{
 					p_threat->MakeBullet(gScreen, SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -335,6 +347,8 @@ int  main(int arc, char* argv[])
 							}
 							else
 							{
+								if(point > loadHighScore())saveHighScore(point);		
+
 								if(MessageBox(NULL, L"GAME OVER!", L"Info", MB_OK) == IDOK)
 								{
 									SDLCommonFunc::CleanUp();
@@ -412,6 +426,8 @@ int  main(int arc, char* argv[])
 						}
 						else
 						{
+							if(point > loadHighScore())saveHighScore(point);		
+
 							if(MessageBox(NULL, L"GAME OVER!", L"Info", MB_OK) == IDOK)
 							{
 								SDLCommonFunc::CleanUp();
@@ -499,10 +515,11 @@ bool init()
 		return false;
 	}
 
-	g_fond_text = TTF_OpenFont(g_font_text, 30);
+	g_fond_text = TTF_OpenFont(g_font_text, 20);
 	if(g_fond_text == NULL)
 	{
 		return false;
+
 	}
 
 	if(Mix_OpenAudio(22050, MIX_DEFAULT_FORMAT, 2, 4096) == -1)
@@ -525,3 +542,19 @@ bool init()
 	return true;
 }
 
+void saveHighScore(int score) {
+	std::ofstream outfile("best_score.txt");
+	outfile << score;
+	outfile.close();
+}
+
+int loadHighScore() {
+	std::ifstream infile("best_score.txt");
+	int highscore;
+	if (infile.is_open()) {
+		infile >> highscore;
+		infile.close();
+		return highscore;
+	}
+	return 0; // Trả về 0 nếu không tìm thấy file
+}

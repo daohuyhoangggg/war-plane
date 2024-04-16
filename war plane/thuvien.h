@@ -9,9 +9,11 @@
 #include <SDL_mixer.h>
 #include<vector>
 #include<string>
+#include<fstream>
 
 static SDL_Surface* gScreen = NULL;
 static SDL_Surface* gBkground = NULL;
+static SDL_Surface* gMenu		= NULL;
 static SDL_Event gEven;
 
 static Mix_Chunk* g_sound_bullet;
@@ -34,7 +36,7 @@ const int MAX_VELOCITY_Y		= 8;
 const int SPEED_BULLET_MAIN		= 10;
 
 // THREAT OBJECT
-const int THREATS				= 3;
+const int THREATS				= 2;
 const int UNDER_LIMIT_THREAT	= 150;			// giới hạn dưới của mối đe dọa 
 const int MAX_HEIGHT_OF_THREAT	= 600;			// độ cao giới hạn 
 const int SPEED_THREAT1			= 4;
@@ -64,12 +66,12 @@ const int MEDAL_WIDTH			= 25;
 const int MEDAL_HEIGHT			= 28;
 
 //TEXT OBJECT
-const int RECT_X_TEXT = RECT_X_MEDAL + MEDAL_WIDTH + 10;
-const int RECT_Y_TEXT = RECT_Y_MEDAL;
+const int RECT_X_TEXT = RECT_X_MEDAL + MEDAL_WIDTH + 13;
+const int RECT_Y_TEXT = RECT_Y_MEDAL + 10;
 
 
 static char g_name_back_ground[]		= {"img/background_game.jpg"};
-
+static char g_img_menu[]				= {"img/WAR PLANE.png"};
 
 static char g_name_main_obj[]			= {"img/plane_object.png"};
 static char g_name_bullet_main_obj[]	= {"img/bullet_main.png"};
@@ -100,7 +102,10 @@ namespace SDLCommonFunc
 	void ApplySurface(SDL_Surface* src, SDL_Surface* des, int x, int y);    // vẽ ảnh src lên des(màn hinh) tại tọa độ(x,y)
 	void ApplySurfaceClip(SDL_Surface* src, SDL_Surface* des, SDL_Rect* clip, int x ,int y);
 	bool CheckCollision(const SDL_Rect& object1, const SDL_Rect& object2);		// xử lý va chạm
+	int	 ShowMenu(SDL_Surface* des, TTF_Font* font);
+	bool CheckForcusWithRect(const int& x, const int& y, const SDL_Rect& rect);
 	void CleanUp();					// Giải phóng tài nguyên
 }
+
 
 #endif

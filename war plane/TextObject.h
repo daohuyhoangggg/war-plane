@@ -10,7 +10,9 @@ class TextObject : public BaseObject
 public:
 	enum TextColor
 	{
-		BLACK_TEXT = 0
+		BLACK_TEXT = 0,
+		RED_TEXT = 1,
+		BLUE_TEXT = 2
 	};
 
 	TextObject();

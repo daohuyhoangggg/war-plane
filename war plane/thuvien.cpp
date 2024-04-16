@@ -1,5 +1,158 @@
 ﻿
 #include"thuvien.h"
+#include "TextObject.h"
+
+
+bool SDLCommonFunc::CheckForcusWithRect(const int& x, const int& y, const SDL_Rect& rect)
+{
+	if(x >= rect.x && x < rect.x + rect.w && 
+		y >= rect.y && y <= rect.y + rect.h)
+	{
+		return true;
+	}
+	return false;
+
+}
+
+int SDLCommonFunc::ShowMenu(SDL_Surface* des, TTF_Font* font)
+{
+
+	std::ifstream file("best_score.txt");
+	if(!file.is_open()){
+		std::cout << "Khong the mo tep! \n";
+		return 0;
+
+	}
+
+	gMenu  = LoadImage(g_img_menu);
+	if(gMenu == NULL){
+		return 1;
+	}
+
+
+	const int kMenuItemNum = 2;
+	SDL_Rect pos_arr[kMenuItemNum];
+	pos_arr[0].x = 540;
+	pos_arr[0].y = 400;
+
+	pos_arr[1].x = 540;
+	pos_arr[1].y = 450;
+
+	TextObject score;
+	std::string strScore("SCORE:10");
+	score.SetText(strScore);
+	score.SetColor(TextObject::BLACK_TEXT);
+	score.SetRect(10,10);
+
+	TextObject best_score;
+	best_score.SetColor(TextObject::BLACK_TEXT);
+	best_score.SetRect(1000,10);
+
+	TextObject text_menu[kMenuItemNum];
+
+	std::string strMenu1("Play game");
+	text_menu[0].SetText(strMenu1);
+	text_menu[0].SetColor(TextObject::BLACK_TEXT);
+	text_menu[0].SetRect(pos_arr[0].x, pos_arr[0].y);
+
+	std::string strMenu2("Exit game");
+	text_menu[1].SetText(strMenu2);
+	text_menu[1].SetColor(TextObject::BLACK_TEXT);
+	text_menu[1].SetRect(pos_arr[1].x, pos_arr[1].y);
+
+
+	bool selected[kMenuItemNum] = {0, 0};
+	int xm = 0;
+	int ym = 0;
+
+	SDL_Event m_event;
+	while(true)
+	{
+
+
+		SDLCommonFunc::ApplySurface(gMenu, des, 0, 0);
+
+		score.CreateText(font, des);
+
+		int high_score;
+		file >> high_score;
+
+		std::string strbest("BEST:");
+		std::string strbest1 = std::to_string(high_score);
+		strbest += strbest1;
+
+
+
+		best_score.SetText(strbest);
+		best_score.CreateText(font, des);
+
+		for(int i = 0; i < kMenuItemNum; i++)
+		{
+			text_menu[i].CreateText(font, des);
+		}
+
+		while(SDL_PollEvent(&m_event))
+		{
+			switch (m_event.type)
+			{
+			case SDL_QUIT:
+				return 1;
+			case SDL_MOUSEMOTION:
+				{
+					xm = m_event.motion.x;
+					ym = m_event.motion.y;
+
+					for(int i = 0; i < kMenuItemNum; i++)
+					{
+						if(CheckForcusWithRect(xm, ym, text_menu[i].GetRect()))
+						{
+							if(selected[i] == false)
+							{
+								selected[i] = true;
+								text_menu[i].SetColor(TextObject::RED_TEXT);
+							}
+						}
+						else
+						{
+							if(selected[i] == true)
+							{
+								selected[i] = false;
+								text_menu[i].SetColor(TextObject::BLACK_TEXT);
+							}
+						}
+					}
+				}
+				break;
+			case SDL_MOUSEBUTTONDOWN:
+				{
+					xm = m_event.button.x;
+					ym = m_event.button.y;
+					for(int i = 0; i < kMenuItemNum; i++)
+					{
+						if(CheckForcusWithRect(xm, ym, text_menu[i].GetRect()))
+						{
+							return i;
+						}
+					}
+
+				}
+			default:
+				break;
+			case SDL_KEYDOWN:
+				if(m_event.key.keysym.sym == SDLK_ESCAPE)
+				{
+					return 1;
+				}
+			}
+		}
+
+		SDL_Flip(des);
+	}
+
+
+	return 1;
+}
+
 
 SDL_Surface* SDLCommonFunc::LoadImage(std::string file_path)
 {
@@ -15,9 +168,9 @@ SDL_Surface* SDLCommonFunc::LoadImage(std::string file_path)
 
 		if(optimizeImage != NULL)
 		{
-				// loại bỏ background của cái đối tượng con
-				UINT32 color_key = SDL_MapRGB(optimizeImage->format, 255, 255, 255);		
-				SDL_SetColorKey(optimizeImage, SDL_SRCCOLORKEY, color_key);
+			// loại bỏ background của cái đối tượng con
+			UINT32 color_key = SDL_MapRGB(optimizeImage->format, 255, 255, 255);		
+			SDL_SetColorKey(optimizeImage, SDL_SRCCOLORKEY, color_key);
 
 		}
 	}
@@ -40,7 +193,6 @@ void SDLCommonFunc::ApplySurfaceClip(SDL_Surface* src, SDL_Surface* des, SDL_Rec
 	offset.y = y;
 	SDL_BlitSurface(src, clip, des, &offset);
 }
-
 
 bool SDLCommonFunc::CheckCollision(const SDL_Rect& object1, const SDL_Rect& object2)
 {
