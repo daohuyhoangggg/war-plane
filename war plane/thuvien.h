@@ -72,6 +72,7 @@ const int RECT_Y_TEXT = RECT_Y_MEDAL + 10;
 
 static char g_name_back_ground[]		= {"img/background_game.jpg"};
 static char g_img_menu[]				= {"img/WAR PLANE.png"};
+static char g_img_menu1[]				= {"img/menu2.png"};
 
 static char g_name_main_obj[]			= {"img/plane_object.png"};
 static char g_name_bullet_main_obj[]	= {"img/bullet_main.png"};
@@ -103,6 +104,8 @@ namespace SDLCommonFunc
 	void ApplySurfaceClip(SDL_Surface* src, SDL_Surface* des, SDL_Rect* clip, int x ,int y);
 	bool CheckCollision(const SDL_Rect& object1, const SDL_Rect& object2);		// xử lý va chạm
 	int	 ShowMenu(SDL_Surface* des, TTF_Font* font);
+	int ShowMenu1(SDL_Surface* des, TTF_Font* font1, TTF_Font* font2, TTF_Font* font3,int point);
+
 	bool CheckForcusWithRect(const int& x, const int& y, const SDL_Rect& rect);
 	void CleanUp();					// Giải phóng tài nguyên
 }

@@ -9,6 +9,9 @@
 
 bool init();  // Thiet lap cua so man hinh
 TTF_Font* g_fond_text = NULL;
+TTF_Font* g_fond_text1 = NULL;
+TTF_Font* g_fond_text2 = NULL;
+TTF_Font* g_fond_text3 = NULL;
 
 void saveHighScore(int score);  // Lưu điểm số cao nhất
 int loadHighScore();			// Tải điểm cao nhất
@@ -276,11 +279,19 @@ int  main(int arc, char* argv[])
 
 				if(point > loadHighScore())saveHighScore(point);		
 
-				if(MessageBox(NULL, L"GAME OVER!", L"Info", MB_OK) == IDOK)
+				int ret_menu1 = SDLCommonFunc::ShowMenu1(gScreen, g_fond_text1,g_fond_text2,g_fond_text3, point);
+				if(ret_menu1 == 1)is_quit = true;
+				else
 				{
+					die_number = 0;
+					point = 0;
+					is_skill = false;
+					is_play = false;
+					plane_object.SetRect(X_STAR_MAIN, Y_STAR_MAIN);
+					heart_player.Init();
+					p_skills->Reset(p_skills);
+					p_threats->Reset(p_threats);
 					SDLCommonFunc::CleanUp();
-					SDL_Quit();
-					return -1;
 				}
 			}
 		} 
@@ -349,11 +360,19 @@ int  main(int arc, char* argv[])
 							{
 								if(point > loadHighScore())saveHighScore(point);		
 
-								if(MessageBox(NULL, L"GAME OVER!", L"Info", MB_OK) == IDOK)
+								int ret_menu1 = SDLCommonFunc::ShowMenu1(gScreen, g_fond_text1,g_fond_text2,g_fond_text3, point);
+								if(ret_menu1 == 1)is_quit = true;
+								else
 								{
+									die_number = 0;
+									point = 0;
+									is_skill = false;
+									is_play = false;
+									plane_object.SetRect(X_STAR_MAIN, Y_STAR_MAIN);
+									heart_player.Init();
+									p_skills->Reset(p_skills);
+									p_threats->Reset(p_threats);
 									SDLCommonFunc::CleanUp();
-									SDL_Quit();
-									return -1;
 								}
 							}	
 						}
@@ -428,11 +447,19 @@ int  main(int arc, char* argv[])
 						{
 							if(point > loadHighScore())saveHighScore(point);		
 
-							if(MessageBox(NULL, L"GAME OVER!", L"Info", MB_OK) == IDOK)
+							int ret_menu1 = SDLCommonFunc::ShowMenu1(gScreen, g_fond_text1,g_fond_text2,g_fond_text3, point);
+							if(ret_menu1 == 1)is_quit = true;
+							else
 							{
+								die_number = 0;
+								point = 0;
+								is_skill = false;
+								is_play = false;
+								plane_object.SetRect(X_STAR_MAIN, Y_STAR_MAIN);
+								heart_player.Init();
+								p_skills->Reset(p_skills);
+								p_threats->Reset(p_threats);
 								SDLCommonFunc::CleanUp();
-								SDL_Quit();
-								return -1;
 							}
 						}	
 					}
@@ -520,6 +547,24 @@ bool init()
 	{
 		return false;
 
+	}
+
+	g_fond_text1 = TTF_OpenFont("ttf/dlxfont.ttf", 30);
+	if(g_fond_text1 == NULL)
+	{
+		return false;
+	}
+
+	g_fond_text2 = TTF_OpenFont("ttf/Dreams.ttf", 35);
+	if(g_fond_text1 == NULL)
+	{
+		return false;
+	}
+
+	g_fond_text3 = TTF_OpenFont("ttf/dlxfont.ttf", 22);
+	if(g_fond_text3 == NULL)
+	{
+		return false;
 	}
 
 	if(Mix_OpenAudio(22050, MIX_DEFAULT_FORMAT, 2, 4096) == -1)
