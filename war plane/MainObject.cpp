@@ -120,4 +120,9 @@ void MainObject::HandleMove()
 		rect_.y = MAX_HEIGHT_OF_MAIN - HEIGHT_MAIN_OBJECT;
         velocity_y = 0;
     }
+	if(rect_.y < MIN_HEIGHT_OF_MAIN)
+	{
+		rect_.y = MIN_HEIGHT_OF_MAIN;
+        velocity_y = 0;
+	}
 }

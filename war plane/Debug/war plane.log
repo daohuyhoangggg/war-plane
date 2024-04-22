@@ -1,52 +1,8 @@
-﻿Build started 22/04/2024 10:00:43 CH.
+﻿Build started 22/04/2024 11:14:09 CH.
      1>Project "C:\Users\hoang\OneDrive\Máy tính\ltnc2\war plane\war plane\war plane.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt BaseObject.cpp BulletObject.cpp ExplosionObject.cpp HeartObject.cpp MainObject.cpp SkillObject.cpp TextObject.cpp ThreatObject.cpp main.cpp thuvien.cpp
-         MainObject.cpp
-     1>c:\users\hoang\onedrive\máy tính\ltnc2\war plane\war plane\mainobject.cpp(32): warning C4244: 'argument' : conversion from 'double' to 'const int', possible loss of data
-     1>c:\users\hoang\onedrive\máy tính\ltnc2\war plane\war plane\mainobject.cpp(50): warning C4244: 'argument' : conversion from 'double' to 'const int', possible loss of data
-     1>c:\users\hoang\onedrive\máy tính\ltnc2\war plane\war plane\mainobject.cpp(68): warning C4244: 'argument' : conversion from 'double' to 'const int', possible loss of data
-     1>c:\users\hoang\onedrive\máy tính\ltnc2\war plane\war plane\mainobject.cpp(80): warning C4018: '<' : signed/unsigned mismatch
-         Generating Code...
-         Compiling...
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt thuvien.cpp
          thuvien.cpp
-         main.cpp
-     1>c:\users\hoang\onedrive\máy tính\ltnc2\war plane\war plane\main.cpp(89): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
-     1>c:\users\hoang\onedrive\máy tính\ltnc2\war plane\war plane\main.cpp(109): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
-     1>c:\users\hoang\onedrive\máy tính\ltnc2\war plane\war plane\main.cpp(247): warning C4244: 'initializing' : conversion from 'double' to 'int', possible loss of data
-     1>c:\users\hoang\onedrive\máy tính\ltnc2\war plane\war plane\main.cpp(248): warning C4244: 'initializing' : conversion from 'double' to 'int', possible loss of data
-     1>c:\users\hoang\onedrive\máy tính\ltnc2\war plane\war plane\main.cpp(317): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\hoang\onedrive\máy tính\ltnc2\war plane\war plane\main.cpp(327): warning C4244: 'initializing' : conversion from 'double' to 'int', possible loss of data
-     1>c:\users\hoang\onedrive\máy tính\ltnc2\war plane\war plane\main.cpp(328): warning C4244: 'initializing' : conversion from 'double' to 'int', possible loss of data
-     1>c:\users\hoang\onedrive\máy tính\ltnc2\war plane\war plane\main.cpp(392): warning C4244: 'initializing' : conversion from 'double' to 'int', possible loss of data
-     1>c:\users\hoang\onedrive\máy tính\ltnc2\war plane\war plane\main.cpp(393): warning C4244: 'initializing' : conversion from 'double' to 'int', possible loss of data
-     1>c:\users\hoang\onedrive\máy tính\ltnc2\war plane\war plane\main.cpp(410): warning C4244: 'initializing' : conversion from 'double' to 'int', possible loss of data
-     1>c:\users\hoang\onedrive\máy tính\ltnc2\war plane\war plane\main.cpp(411): warning C4244: 'initializing' : conversion from 'double' to 'int', possible loss of data
-     1>c:\users\hoang\onedrive\máy tính\ltnc2\war plane\war plane\main.cpp(471): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\hoang\onedrive\máy tính\ltnc2\war plane\war plane\main.cpp(479): warning C4244: 'initializing' : conversion from 'double' to 'int', possible loss of data
-     1>c:\users\hoang\onedrive\máy tính\ltnc2\war plane\war plane\main.cpp(480): warning C4244: 'initializing' : conversion from 'double' to 'int', possible loss of data
-         ThreatObject.cpp
-     1>c:\users\hoang\onedrive\máy tính\ltnc2\war plane\war plane\threatobject.cpp(30): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
-     1>c:\users\hoang\onedrive\máy tính\ltnc2\war plane\war plane\threatobject.cpp(48): warning C4244: 'argument' : conversion from 'double' to 'const int', possible loss of data
-     1>c:\users\hoang\onedrive\máy tính\ltnc2\war plane\war plane\threatobject.cpp(59): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\hoang\onedrive\máy tính\ltnc2\war plane\war plane\threatobject.cpp(72): warning C4244: 'argument' : conversion from 'double' to 'const int', possible loss of data
-     1>c:\users\hoang\onedrive\máy tính\ltnc2\war plane\war plane\threatobject.cpp(86): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
-     1>c:\users\hoang\onedrive\máy tính\ltnc2\war plane\war plane\threatobject.cpp(90): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\hoang\onedrive\máy tính\ltnc2\war plane\war plane\threatobject.cpp(103): warning C4244: 'argument' : conversion from 'double' to 'const int', possible loss of data
-     1>c:\users\hoang\onedrive\máy tính\ltnc2\war plane\war plane\threatobject.cpp(118): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
-     1>c:\users\hoang\onedrive\máy tính\ltnc2\war plane\war plane\threatobject.cpp(123): warning C4018: '<' : signed/unsigned mismatch
-         TextObject.cpp
-         SkillObject.cpp
-     1>c:\users\hoang\onedrive\máy tính\ltnc2\war plane\war plane\skillobject.cpp(39): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\hoang\onedrive\máy tính\ltnc2\war plane\war plane\skillobject.cpp(60): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
-     1>c:\users\hoang\onedrive\máy tính\ltnc2\war plane\war plane\skillobject.cpp(73): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
-     1>c:\users\hoang\onedrive\máy tính\ltnc2\war plane\war plane\skillobject.cpp(90): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
-         HeartObject.cpp
-     1>c:\users\hoang\onedrive\máy tính\ltnc2\war plane\war plane\heartobject.cpp(23): warning C4018: '<' : signed/unsigned mismatch
-         ExplosionObject.cpp
-         BulletObject.cpp
-         BaseObject.cpp
-         Generating Code...
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\hoang\OneDrive\Máy tính\ltnc2\war plane\Debug\war plane.exe" /INCREMENTAL /NOLOGO SDL.lib SDLMain.lib SDL_image.lib SDL_mixer.lib SDL_ttf.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\hoang\OneDrive\Máy tính\ltnc2\war plane\Debug\war plane.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\hoang\OneDrive\Máy tính\ltnc2\war plane\Debug\war plane.lib" /MACHINE:X86 Debug\BulletObject.obj
          Debug\BaseObject.obj
@@ -63,4 +19,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:09.19
+Time Elapsed 00:00:01.76

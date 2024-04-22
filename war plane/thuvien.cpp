@@ -37,7 +37,7 @@ int SDLCommonFunc::ShowMenu(SDL_Surface* des, TTF_Font* font)
 	pos_arr[1].y = 450;
 
 	TextObject score;
-	std::string strScore("SCORE:10");
+	std::string strScore("SCORE += 10");
 	score.SetText(strScore);
 	score.SetColor(TextObject::BLACK_TEXT);
 	score.SetRect(10,10);

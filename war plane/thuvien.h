@@ -27,9 +27,10 @@ const int SCREEN_BPP			= 32;
 const int SCREEN_SPEED			= 2;
 
 // Main object
-const int  X_STAR_MAIN			= 150;
-const int  Y_STAR_MAIN			= 100;
+const int  X_STAR_MAIN			= 100;
+const int  Y_STAR_MAIN			= 250;
 const int MAX_HEIGHT_OF_MAIN	= SCREEN_HEIGHT - 45;
+const int MIN_HEIGHT_OF_MAIN    = 50;
 const int  acceleration			= 1;
 const int  SPEEDFLY				= 3;
 const int MAX_VELOCITY_Y		= 5;	
