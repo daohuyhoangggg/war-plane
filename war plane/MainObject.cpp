@@ -108,6 +108,7 @@ void MainObject::HandleMove()
 
 	if(velocity_y > MAX_VELOCITY_Y) velocity_y = MAX_VELOCITY_Y;    // giới hạn tốc độ nhân vật
 
+
 	if(rect_.y < 0)
 	{
 		rect_.y = 0;

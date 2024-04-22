@@ -32,7 +32,7 @@ const int  Y_STAR_MAIN			= 100;
 const int MAX_HEIGHT_OF_MAIN	= SCREEN_HEIGHT - 45;
 const int  acceleration			= 1;
 const int  SPEEDFLY				= 3;
-const int MAX_VELOCITY_Y		= 8;	
+const int MAX_VELOCITY_Y		= 5;	
 const int SPEED_BULLET_MAIN		= 10;
 
 // THREAT OBJECT
