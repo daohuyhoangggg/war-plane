@@ -19,7 +19,7 @@ public:
 
 	BulletObject();
 	~BulletObject();
-	void HandleInputAction(SDL_Event events);          // xử lý hành đông vào
+	void HandleInputAction(SDL_Event events);          // xu ly hanh dong vao
 	void HandleMove(const int& x_border, const int& y_border);
 	void HandleMoveRightToLeft();
 

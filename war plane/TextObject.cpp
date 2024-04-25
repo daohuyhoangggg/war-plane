@@ -35,6 +35,6 @@ void TextObject::SetColor(const int& type)
 
 void TextObject::CreateText(TTF_Font* font, SDL_Surface* des)
 {
-	p_object_ = TTF_RenderText_Solid(font, str_val_.c_str(), text_color_);		// tạo ra đối tượng có màu sắc, form chữ
+	p_object_ = TTF_RenderText_Solid(font, str_val_.c_str(), text_color_);		// tao ra doi tuong co mau sac, font chu
 	Show(des);
 }

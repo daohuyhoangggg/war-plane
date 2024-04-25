@@ -38,8 +38,8 @@ const int SPEED_BULLET_MAIN		= 10;
 
 // THREAT OBJECT
 const int THREATS				= 2;
-const int UNDER_LIMIT_THREAT	= 150;			// giới hạn dưới của mối đe dọa 
-const int MAX_HEIGHT_OF_THREAT	= 600;			// độ cao giới hạn 
+const int UNDER_LIMIT_THREAT	= 150;			// gioi han duoi  
+const int MAX_HEIGHT_OF_THREAT	= 600;			// do cao gioi han 
 const int SPEED_THREAT1			= 4;
 const int SPEED_THREAT2			=10;
 const int SPEED_BULLET_THREAT	= 8;
@@ -100,15 +100,15 @@ static char g_name_sound_exp_skill2[]		= {"mix/sound_skill2.wav"};
 
 namespace SDLCommonFunc
 {
-	SDL_Surface* LoadImage(std::string file_path);				// tải ảnh 
-	SDL_Rect ApplySurface(SDL_Surface* src, SDL_Surface* des, int x, int y);    // vẽ ảnh src lên des(màn hinh) tại tọa độ(x,y)
+	SDL_Surface* LoadImage(std::string file_path);				// load anh 
+	SDL_Rect ApplySurface(SDL_Surface* src, SDL_Surface* des, int x, int y);    // ve anh src len des(man hinh) tai  toa do (x,y)
 	void ApplySurfaceClip(SDL_Surface* src, SDL_Surface* des, SDL_Rect* clip, int x ,int y);
-	bool CheckCollision(const SDL_Rect& object1, const SDL_Rect& object2);		// xử lý va chạm
+	bool CheckCollision(const SDL_Rect& object1, const SDL_Rect& object2);		// xu ly va cham
 	int	 ShowMenu(SDL_Surface* des, TTF_Font* font);
 	int ShowMenu1(SDL_Surface* des, TTF_Font* font1, TTF_Font* font2, TTF_Font* font3,int point);
 
 	bool CheckForcusWithRect(const int& x, const int& y, const SDL_Rect& rect);
-	void CleanUp();					// Giải phóng tài nguyên
+	void CleanUp();					// giai phong tai nguyen
 }
 
 

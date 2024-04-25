@@ -106,7 +106,7 @@ void MainObject::HandleMove()
 	velocity_y += acceleration;
 	rect_.y += velocity_y;
 
-	if(velocity_y > MAX_VELOCITY_Y) velocity_y = MAX_VELOCITY_Y;    // giới hạn tốc độ nhân vật
+	if(velocity_y > MAX_VELOCITY_Y) velocity_y = MAX_VELOCITY_Y;    // gioi han toc do
 
 
 	if(rect_.y < 0)
@@ -125,4 +125,5 @@ void MainObject::HandleMove()
 		rect_.y = MIN_HEIGHT_OF_MAIN;
         velocity_y = 0;
 	}
+	
 }

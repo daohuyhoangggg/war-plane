@@ -10,8 +10,8 @@ class SkillObject : public BaseObject
 {
 public:
 	enum{
-		STAR = 0,			// cộng điểm
-		SHIELD = 1			// cường hóa đạn
+		STAR = 0,			// cong diem
+		SHIELD = 1			// cuong hoa dan
 	};
 
 	SkillObject ();

@@ -14,7 +14,7 @@ ExplosionObject::~ExplosionObject()
 void ExplosionObject::set_clip()
 {
 
-	// lấy các frame 
+	// lay cac frame 
 	clip_[0].x = 0;
 	clip_[0].y = 0;
 	clip_[0].w = EXPLOSION_WIDTH;

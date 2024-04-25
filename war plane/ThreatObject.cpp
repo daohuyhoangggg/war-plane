@@ -25,7 +25,7 @@ void ThreatObject::HandleMove(const int & x_border, const int& y_border)
 	{
 		rect_.x = SCREEN_WIDTH;
 		rand_y = rand()% MAX_HEIGHT_OF_THREAT + 50;
-		if(rand_y > SCREEN_HEIGHT - UNDER_LIMIT_THREAT)					//  giảm trường hợp bị trùng
+		if(rand_y > SCREEN_HEIGHT - UNDER_LIMIT_THREAT)					//  giam truong hop bi trung 
 		{
 			rand_y = SCREEN_HEIGHT * 0.3;
 		}

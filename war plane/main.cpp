@@ -13,8 +13,8 @@ TTF_Font* g_fond_text1 = NULL;
 TTF_Font* g_fond_text2 = NULL;
 TTF_Font* g_fond_text3 = NULL;
 
-void saveHighScore(int score);  // Lưu điểm số cao nhất
-int loadHighScore();			// Tải điểm cao nhất
+void saveHighScore(int score);  
+int loadHighScore();			
 
 
 int  main(int arc, char* argv[])
@@ -27,7 +27,7 @@ int  main(int arc, char* argv[])
 
 	// Create MainObject
 	MainObject plane_object;
-	bool ret = plane_object.LoadImg(g_name_main_obj);		// load ảnh nhân vật
+	bool ret = plane_object.LoadImg(g_name_main_obj);		// load anh nhan vat 
 	plane_object.SetRect(X_STAR_MAIN, Y_STAR_MAIN);
 	if(ret == NULL) 
 	{
@@ -81,7 +81,7 @@ int  main(int arc, char* argv[])
 
 			}
 
-			// cho threat ở vị trí ngẫu nhiên
+			// cho threat o vi tri ngau nhien
 
 			int rand_y = rand()% MAX_HEIGHT_OF_THREAT + 50;
 			if(rand_y > SCREEN_HEIGHT - UNDER_LIMIT_THREAT)
@@ -138,7 +138,7 @@ int  main(int arc, char* argv[])
 	if(ret_menu == 1)is_quit = true;
 
 
-	while(!is_quit)			// cap nhap man hình
+	while(!is_quit)			// cap nhap man hinh
 	{
 			
 				while(SDL_PollEvent(&gEven))
@@ -152,7 +152,7 @@ int  main(int arc, char* argv[])
 							is_mouseButton = true;	
 							is_play = true;
 							plane_object.Flap();
-							plane_object.CreateBullet1(g_sound_bullet);		// Đặt biến trạng thái là true khi chuột được nhấn
+							plane_object.CreateBullet1(g_sound_bullet);		
 
 							if(is_skill)
 							{
@@ -163,7 +163,7 @@ int  main(int arc, char* argv[])
 				}		
 				else if (gEven.type == SDL_MOUSEBUTTONUP) {
 					if (gEven.button.button == SDL_BUTTON_LEFT) {
-						is_mouseButton = false;				// Đặt biến trạng thái là false khi chuột được nhả
+						is_mouseButton = false;				
 					}
 				}
 		}
@@ -172,7 +172,7 @@ int  main(int arc, char* argv[])
 			plane_object.Flap();
 		}	
 
-		// apply background && xử lý di chuyển màn hình
+		// apply background && xu ly di chuyen man hinh
 		speed_screen -= SCREEN_SPEED;
 		SDLCommonFunc::ApplySurface(gBkground, gScreen, speed_screen, 0);
 		SDLCommonFunc::ApplySurface(gBkground, gScreen, speed_screen + SCREEN_WIDTH, 0);
@@ -194,7 +194,7 @@ int  main(int arc, char* argv[])
 				p_skill->HandleMove(SCREEN_WIDTH, SCREEN_HEIGHT);
 
 
-				//Main object khi ăn được skill
+				//Main object khi an duoc skill
 				bool is_col3 = SDLCommonFunc::CheckCollision(plane_object.GetRect(), p_skill->GetRect());
 				if(is_col3)
 				{
@@ -205,7 +205,7 @@ int  main(int arc, char* argv[])
 					}
 					else
 					{	
-						is_skill = true;							// Cường hóa đạn
+						is_skill = true;							// cuong hoa dan
 						p_skill->Reset(SCREEN_WIDTH);
 					}
 
@@ -233,15 +233,15 @@ int  main(int arc, char* argv[])
 			plane_object.HandleMove();
 		}
 		plane_object.Show(gScreen);
-		plane_object.MakeBullet(gScreen); // xử lý đạn cho đối tượng chính
+		plane_object.MakeBullet(gScreen); // xu ly dan 
 
 
-		// xử lý va chạm với nước
+		// xu ly va cham voi nuoc
 		if(plane_object.GetRect().y  + HEIGHT_MAIN_OBJECT >= SCREEN_HEIGHT - 50)
 		{	
 			is_skill = false;
 
-			// thực hiện vụ nổ cho main object 
+			// thuc hien vu no cho main object 
 			for(int ex_m = 0; ex_m < NUMBER_OF_FRAMES; ex_m++)
 			{
 				int x = (plane_object.GetRect().x + plane_object.GetRect().w * 0.5) - EXPLOSION_WIDTH * 0.5;
@@ -312,7 +312,7 @@ int  main(int arc, char* argv[])
 					p_threat->MakeBullet(gScreen, SCREEN_WIDTH, SCREEN_HEIGHT);
 
 
-					// xử lý va chạm giữa main và bullet_threat 
+					// xu ly va cham giua  main và bullet_threat 
 					std::vector<BulletObject*>bulletT_list = p_threat->GetBulletList();
 					for(int  bt = 0; bt < bulletT_list.size(); bt++)
 					{
@@ -321,7 +321,7 @@ int  main(int arc, char* argv[])
 						{
 							is_skill = false;
 
-							// thực hiện vụ nổ cho main object 
+							// thuc hien vu no  cho main object 
 							for(int ex_m = 0; ex_m < NUMBER_OF_FRAMES; ex_m++)
 							{
 								int x = (plane_object.GetRect().x + plane_object.GetRect().w * 0.5) - EXPLOSION_WIDTH * 0.5;
@@ -380,13 +380,13 @@ int  main(int arc, char* argv[])
 
 
 
-					// xử lý va chạm giữa main và threat
+					// xu ly va cham giua  main và threat
 					bool is_col1 = SDLCommonFunc::CheckCollision(plane_object.GetRect(), p_threat->GetRect());
 					if(is_col1)
 					{
 						is_skill = false;
 
-						// thực hiện vụ nổ cho main object 
+						// thuc hien vu no cho main object 
 						for(int ex_m = 0; ex_m < NUMBER_OF_FRAMES; ex_m++)
 						{
 							int x = (plane_object.GetRect().x + plane_object.GetRect().w * 0.5) - EXPLOSION_WIDTH * 0.5;
@@ -404,7 +404,7 @@ int  main(int arc, char* argv[])
 
 
 
-						// thực hiện vụ nổ cho threat object 
+						// thuc hien vu no  cho threat object 
 						for(int ex_t = 0; ex_t < NUMBER_OF_FRAMES; ex_t++)
 						{
 							int x = (p_threat->GetRect().x + p_threat->GetRect().w * 0.5) - EXPLOSION_WIDTH * 0.5;
@@ -466,7 +466,7 @@ int  main(int arc, char* argv[])
 
 
 
-					// xử lý va chạm giữa đạn của main object với threat object
+					// xu ly va cham giua dan cua  main object voi  threat object
 					std::vector<BulletObject*> bulletM_list = plane_object.GetBulletList();
 					for(int bm = 0; bm < bulletM_list.size(); bm++)
 					{
@@ -508,7 +508,7 @@ int  main(int arc, char* argv[])
 
 
 		// Update screen
-		if(SDL_Flip(gScreen) == -1)				// hiển thị
+		if(SDL_Flip(gScreen) == -1)				// hien thi 
 		{
 			delete [] p_threats;
 			delete [] p_skills;
@@ -527,11 +527,11 @@ int  main(int arc, char* argv[])
 
 bool init()
 {
-	if(SDL_Init(SDL_INIT_EVERYTHING) == -1)					// khởi tạo các thành phần của SDL
+	if(SDL_Init(SDL_INIT_EVERYTHING) == -1)					// khoi tao cac thanh phan cua SDL
 	{
 		return false;
 	}
-	gScreen = SDL_SetVideoMode(SCREEN_WIDTH, SCREEN_HEIGHT,SCREEN_BPP, SDL_SWSURFACE);						// thiết lập cửa sổ video
+	gScreen = SDL_SetVideoMode(SCREEN_WIDTH, SCREEN_HEIGHT,SCREEN_BPP, SDL_SWSURFACE);						// thiet lap cua so video
 	if(gScreen == NULL)
 	{
 		return false;
@@ -572,7 +572,7 @@ bool init()
 		return false;
 	}
 
-	// load âm thanh
+	// load sound 
 	g_sound_bullet = Mix_LoadWAV(g_name_sound_bullet_main);
 	g_sound_exp[0] = Mix_LoadWAV(g_name_sound_exp_threat_obj);
 	g_sound_exp[1] = Mix_LoadWAV(g_name_sound_exp_main_obj);
@@ -601,5 +601,5 @@ int loadHighScore() {
 		infile.close();
 		return highscore;
 	}
-	return 0; // Trả về 0 nếu không tìm thấy file
+	return 0; 
 }

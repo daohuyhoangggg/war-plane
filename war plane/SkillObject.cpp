@@ -16,7 +16,7 @@ SkillObject::~SkillObject()
 
 void SkillObject::InitSkill(SkillObject* p_object)
 {
-	int frequency = rand() % 10 + 1;			// xác suất xuất hiện của skill
+	int frequency = rand() % 10 + 1;			// xac xuat xuat hien
 
 	if(frequency <= 8)
 	{

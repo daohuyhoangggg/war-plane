@@ -289,19 +289,19 @@ int SDLCommonFunc::ShowMenu1(SDL_Surface* des, TTF_Font* font1, TTF_Font* font2,
 
 SDL_Surface* SDLCommonFunc::LoadImage(std::string file_path)
 {
-	SDL_Surface* loadImage = NULL;				// lưu trữ hình ảnh từ file
-	SDL_Surface* optimizeImage = NULL;			// lưu trữ hình ảnh được tối ưu hóa
+	SDL_Surface* loadImage = NULL;				// luu tru hinh anh tu file 
+	SDL_Surface* optimizeImage = NULL;			// luu tru hinh anh duoc toi uu hoa
 
 	loadImage = IMG_Load(file_path.c_str());
 
 	if(loadImage != NULL)
 	{
-		optimizeImage = SDL_DisplayFormat(loadImage);			// tối ưu hóa hình ảnh
+		optimizeImage = SDL_DisplayFormat(loadImage);			// toi uu hoa hinh anh
 		SDL_FreeSurface(loadImage);
 
 		if(optimizeImage != NULL)
 		{
-			// loại bỏ background của cái đối tượng con
+			// loai bo background cua cac doi tuong con
 			UINT32 color_key = SDL_MapRGB(optimizeImage->format, 255, 255, 255);		
 			SDL_SetColorKey(optimizeImage, SDL_SRCCOLORKEY, color_key);
 
@@ -310,7 +310,7 @@ SDL_Surface* SDLCommonFunc::LoadImage(std::string file_path)
 	return optimizeImage;
 }
 
-SDL_Rect SDLCommonFunc::ApplySurface(SDL_Surface* src, SDL_Surface* des, int x, int y)				// vẽ lên tọa độ cụ thể
+SDL_Rect SDLCommonFunc::ApplySurface(SDL_Surface* src, SDL_Surface* des, int x, int y)				// ve len toa do cu the
 {
 	SDL_Rect offset;
 	offset.x = x;
