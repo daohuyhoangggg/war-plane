@@ -12,8 +12,10 @@ bool SDLCommonFunc::CheckForcusWithRect(const int& x, const int& y, const SDL_Re
 	return false;
 
 }
-int SDLCommonFunc::ShowMenu(SDL_Surface* des, TTF_Font* font)
+int SDLCommonFunc::ShowMenu(SDL_Surface* des, TTF_Font* font, Mix_Chunk* sound)
 {
+
+	
 
 	std::ifstream file("best_score.txt");
 	if(!file.is_open()){
@@ -66,12 +68,13 @@ int SDLCommonFunc::ShowMenu(SDL_Surface* des, TTF_Font* font)
 	SDL_Event m_event;
 	while(true)
 	{
-
-
+		
 		SDLCommonFunc::ApplySurface(gMenu, des, 0, 0);
+		
+
 
 		score.CreateText(font, des);
-
+		
 		int high_score;
 		file >> high_score;
 
@@ -91,6 +94,7 @@ int SDLCommonFunc::ShowMenu(SDL_Surface* des, TTF_Font* font)
 
 		while(SDL_PollEvent(&m_event))
 		{
+			Mix_PlayChannel(-1, sound, 0);
 			switch (m_event.type)
 			{
 			case SDL_QUIT:
@@ -129,6 +133,7 @@ int SDLCommonFunc::ShowMenu(SDL_Surface* des, TTF_Font* font)
 					{
 						if(CheckForcusWithRect(xm, ym, text_menu[i].GetRect()))
 						{
+							Mix_HaltChannel(-1);
 							return i;
 						}
 					}

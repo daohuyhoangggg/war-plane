@@ -16,6 +16,7 @@ static SDL_Surface* gBkground = NULL;
 static SDL_Surface* gMenu		= NULL;
 static SDL_Event gEven;
 
+static Mix_Chunk* g_sound_game;
 static Mix_Chunk* g_sound_bullet;
 static Mix_Chunk* g_sound_exp[2];
 static Mix_Chunk* g_sound_skill[2];
@@ -91,11 +92,12 @@ static char g_name_skill2_obj[]			= {"img/cuong hoa.png"};
 static char g_name_medal[]				= {"img/gold.png"};
 
 
+static char g_name_sound_game[]				= {"mix/sound_game.wav"};
 
 static char g_name_sound_bullet_main[]		= {"mix/gun.wav"};
-static char g_name_sound_exp_threat_obj[]	= {"mix/Explosion+1.wav"};
-static char g_name_sound_exp_main_obj[]		= {"mix/Explosion+9.wav"};
-static char g_name_sound_exp_skill1[]		= {"mix/hieu_ung_skill.wav"};
+static char g_name_sound_exp_threat_obj[]	= {"mix/Explosion_threat.wav"};
+static char g_name_sound_exp_main_obj[]		= {"mix/Explosion_main.wav"};
+static char g_name_sound_exp_skill1[]		= {"mix/sound_skill1.wav"};
 static char g_name_sound_exp_skill2[]		= {"mix/sound_skill2.wav"};
 
 namespace SDLCommonFunc
@@ -104,7 +106,7 @@ namespace SDLCommonFunc
 	SDL_Rect ApplySurface(SDL_Surface* src, SDL_Surface* des, int x, int y);    // ve anh src len des(man hinh) tai  toa do (x,y)
 	void ApplySurfaceClip(SDL_Surface* src, SDL_Surface* des, SDL_Rect* clip, int x ,int y);
 	bool CheckCollision(const SDL_Rect& object1, const SDL_Rect& object2);		// xu ly va cham
-	int	 ShowMenu(SDL_Surface* des, TTF_Font* font);
+	int	 ShowMenu(SDL_Surface* des, TTF_Font* font, Mix_Chunk* sound);
 	int ShowMenu1(SDL_Surface* des, TTF_Font* font1, TTF_Font* font2, TTF_Font* font3,int point);
 
 	bool CheckForcusWithRect(const int& x, const int& y, const SDL_Rect& rect);

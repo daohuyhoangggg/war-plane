@@ -134,7 +134,7 @@ int  main(int arc, char* argv[])
 	int start_time = 0;
 	int die_number = 0;
 
-	int ret_menu = SDLCommonFunc::ShowMenu(gScreen, g_fond_text);
+	int ret_menu = SDLCommonFunc::ShowMenu(gScreen, g_fond_text, g_sound_game);
 	if(ret_menu == 1)is_quit = true;
 
 
@@ -573,13 +573,15 @@ bool init()
 	}
 
 	// load sound 
-	g_sound_bullet = Mix_LoadWAV(g_name_sound_bullet_main);
-	g_sound_exp[0] = Mix_LoadWAV(g_name_sound_exp_threat_obj);
-	g_sound_exp[1] = Mix_LoadWAV(g_name_sound_exp_main_obj);
-	g_sound_skill[0]  = Mix_LoadWAV(g_name_sound_exp_skill1);
-	g_sound_skill[1] = Mix_LoadWAV(g_name_sound_exp_skill2);
+	g_sound_game		= Mix_LoadWAV(g_name_sound_game);
+	g_sound_bullet		= Mix_LoadWAV(g_name_sound_bullet_main);
+	g_sound_exp[0]		= Mix_LoadWAV(g_name_sound_exp_threat_obj);
+	g_sound_exp[1]		= Mix_LoadWAV(g_name_sound_exp_main_obj);
+	g_sound_skill[0]	= Mix_LoadWAV(g_name_sound_exp_skill1);
+	g_sound_skill[1]	= Mix_LoadWAV(g_name_sound_exp_skill2);
 
-	if(g_sound_bullet == NULL || g_sound_exp[0] == NULL || g_sound_exp[1] == NULL || g_sound_skill == NULL)
+
+	if( g_sound_game == NULL|| g_sound_bullet == NULL || g_sound_exp[0] == NULL || g_sound_exp[1] == NULL || g_sound_skill == NULL)
 	{
 		return false;
 	}
