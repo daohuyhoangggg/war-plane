@@ -4,8 +4,8 @@
  ## Demo Game 
 [link  youtube](https://youtu.be/gNNl6Ips-30)
 ## Dowload
-- Cách 1 : bản chạy được luôn : tải warplane.rar và giải nén từ [game](https://github.com/daohuyhoangggg/warplane/releases/tag/releases)
-- Cách 2 : - bản chạy trên IDE hoặc textEditor : clone repo hoặc Code -> download zip </br> Nếu dùng Visual Studio thì có thể vào file sln và cài đặt SDL2 rồi Ctrl + F5 để chạy
+- Method 1 : Ready-to-run version: download warplane.rar and extract it [game](https://github.com/daohuyhoangggg/warplane/releases/tag/releases)
+- Method 2 : Version runnable on IDE or text editor: clone the repo or click on 'Code' -> 'Download ZIP'. If using Visual Studio, open the .sln file, install SDL2, and then press Ctrl + F5 to run.
 ## Game Description
 In War Plane, players can control a plane and navigate to avoid threats such as bullets, enemy planes, etc. and can use bullets to destroy them. During the game, the plane can eat items to increase its strength, gain points, etc. Destroying an enemy plane will help the player get 10 points. Each turn the player will have 3 lives, the game ends when the player
 
