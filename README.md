@@ -2,7 +2,7 @@
  War plane is a game developed by Huy Hoang in 2024. The game using C++ and SDL2 is used for big exercise
 
  ## Demo Game 
-
+[link  youtube](https://youtu.be/gNNl6Ips-30)
 ## Dowload
 - Cách 1 : bản chạy được luôn : tải warplane.rar và giải nén từ [game](https://github.com/daohuyhoangggg/warplane/releases/tag/releases)
 - Cách 2 : - bản chạy trên IDE hoặc textEditor : clone repo hoặc Code -> download zip </br> Nếu dùng Visual Studio thì có thể vào file sln và cài đặt SDL2 rồi Ctrl + F5 để chạy
